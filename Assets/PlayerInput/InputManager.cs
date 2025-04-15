@@ -1,7 +1,12 @@
+using System;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    // Events
+    public event EventHandler OnInteractAction;
+    public event EventHandler OnInteractAlternateAction;
+    
     public static InputManager Instance{get; private set;}
     // playerInput variable
     private PlayerInput playerInput;
@@ -10,6 +15,10 @@ public class InputManager : MonoBehaviour
         // get playerInput component from player
         playerInput = new PlayerInput();
         Instance = this;
+
+        playerInput.Player.Interact.performed += Interact_performed;
+        playerInput.Player.AlternateInteract.performed += InteractAlternate_performed;
+
     }
 
     private void OnEnable() {
@@ -19,6 +28,14 @@ public class InputManager : MonoBehaviour
     private void OnDisable() {
         playerInput.Disable();
     }
+    
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnInteractAction?.Invoke(this, EventArgs.Empty);
+    }
+    private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnInteractAction?.Invoke(this, EventArgs.Empty);
+    }
+    
     
     // Getters
     public Vector2 GetPlayerMovement() {
@@ -34,10 +51,6 @@ public class InputManager : MonoBehaviour
         return playerInput.Player.Pause.triggered;
     }
 
-    public bool PlayerInput_Interact() {
-        return playerInput.Player.Interact.triggered;
-    }
-
     public bool PlayerInput_AlternateInteract() {
         return playerInput.Player.AlternateInteract.triggered;
     }
@@ -45,4 +58,9 @@ public class InputManager : MonoBehaviour
     public bool PlayerInput_Crouch() {
         return playerInput.Player.Crouch.triggered;
     }
+
+    public bool PlayerInput_Sprint() {
+        return playerInput.Player.Sprint.triggered;
+    }
+    
 }
