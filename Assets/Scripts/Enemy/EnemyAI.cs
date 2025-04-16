@@ -83,7 +83,11 @@ public class EnemyAI : MonoBehaviour
             
             if (agent.remainingDistance <= attackRange && attackCooldown <= 0) {
                 // Animation stuff later
+                
+                // Take the amount of damage
                 player.TakeDamage(damageAmount);
+                
+                // Setup attack cooldown
                 isRunning = false;
             }
         }
@@ -106,11 +110,5 @@ public class EnemyAI : MonoBehaviour
         rand1 = Random.Range(0, patrolAmt);
         currentPatrolPoint = patrolPoints[rand1];
         // Animation stuff later
-    }
-
-    IEnumerator AttackCooldown()
-    {
-        attackCooldown = 2f;
-        yield return new WaitForSeconds(attackCooldown);
     }
 }

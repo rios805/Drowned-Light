@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour
     // Events
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
+    public event EventHandler OpenMap;
     
     public static InputManager Instance{get; private set;}
     // playerInput variable
@@ -18,7 +19,7 @@ public class InputManager : MonoBehaviour
 
         playerInput.Player.Interact.performed += Interact_performed;
         playerInput.Player.AlternateInteract.performed += InteractAlternate_performed;
-
+        playerInput.Player.OpenMap.performed += OpenMap_performed;
     }
 
     private void OnEnable() {
@@ -35,7 +36,11 @@ public class InputManager : MonoBehaviour
     private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
-    
+
+    private void OpenMap_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OpenMap?.Invoke(this, EventArgs.Empty);
+    }
     
     // Getters
     public Vector2 GetPlayerMovement() {
