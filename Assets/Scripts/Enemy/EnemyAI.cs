@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator animator;
     [SerializeField] private int minIdle, maxIdle, damageAmount;
-    [SerializeField] private float sightRange, attackRange, runSeconds, runMin, runMax;
+    [SerializeField] private float sightRange, attackRange, runSeconds, runMin, runMax, attackCooldown;
     
     
     public List<Transform> patrolPoints;
@@ -81,13 +81,11 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(desiredPatrolPoint);
             agent.speed = runSpeed;
             
-            if (agent.remainingDistance <= attackRange) {
+            if (agent.remainingDistance <= attackRange && attackCooldown <= 0) {
                 // Animation stuff later
                 player.TakeDamage(damageAmount);
                 isRunning = false;
             }
-            
-            
         }
     }
 
@@ -108,5 +106,11 @@ public class EnemyAI : MonoBehaviour
         rand1 = Random.Range(0, patrolAmt);
         currentPatrolPoint = patrolPoints[rand1];
         // Animation stuff later
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        attackCooldown = 2f;
+        yield return new WaitForSeconds(attackCooldown);
     }
 }
