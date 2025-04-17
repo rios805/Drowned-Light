@@ -61,11 +61,11 @@ public class InputManager : MonoBehaviour
     }
 
     public bool PlayerInput_Crouch() {
-        return playerInput.Player.Crouch.triggered;
+        return playerInput.Player.Crouch.IsPressed();
     }
 
     public bool PlayerInput_Sprint() {
-        return playerInput.Player.Sprint.triggered;
+        return playerInput.Player.Sprint.IsPressed();
     }
     
 }
