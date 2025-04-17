@@ -1,10 +1,33 @@
 using UnityEngine;
+using System;
 
 public class PlayerInteract : MonoBehaviour
 {
     public float interactRange = 3f;
-    public KeyCode interactKey = KeyCode.E;
     public LayerMask interactMask;
+
+    private IInteractbleItem currentItem;
+    private Transform currentItemTransform;
+
+    private void Start()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.OnInteractAction += HandleInteract;
+        }
+        else
+        {
+            Debug.LogWarning("InputManager not initialized when PlayerInteract started.");
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.OnInteractAction -= HandleInteract;
+        }
+    }
 
     void Update()
     {
@@ -13,26 +36,26 @@ public class PlayerInteract : MonoBehaviour
 
         Debug.DrawRay(transform.position, transform.forward * interactRange, Color.red);
 
+        currentItem = null;
+        currentItemTransform = null;
+
         if (Physics.SphereCast(ray, 0.5f, out hit, interactRange, interactMask))
         {
-            InteractableItem item = hit.collider.GetComponent<InteractableItem>();
-
+            IInteractbleItem item = hit.collider.GetComponent<IInteractbleItem>();
             if (item != null)
             {
-                Debug.Log($"Looking at {item.itemName}");
-
-                if (Input.GetKeyDown(interactKey))
-                {
-                    Debug.Log("Pressed E while looking at item");
-                    // Get Inventory from player
-                    Inventory inv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-                    if (inv != null && item.itemName == "Key")
-                    {
-                        inv.PickUpKey();
-                        Destroy(hit.collider.gameObject);
-                    }
-                }
+                currentItem = item;
+                currentItemTransform = hit.transform;
+                Debug.Log($"Looking at: {currentItemTransform.name}");
             }
+        }
+    }
+
+    private void HandleInteract(object sender, EventArgs e)
+    {
+        if (currentItem != null)
+        {
+            currentItem.OnPlayerInteract();
         }
     }
 }

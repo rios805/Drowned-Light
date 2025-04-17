@@ -1,48 +1,33 @@
 using UnityEngine;
 
-public class DoorInteract : MonoBehaviour
+public class DoorInteract : MonoBehaviour, IInteractbleItem
 {
-    public GameObject door; 
+    [SerializeField] private KeyItemSO requiredKey;
+    [SerializeField] private GameObject door;
+
     private bool playerInZone = false;
-    private GameObject player;
 
-    void Update()
+    public void OnPlayerInteract()
     {
-        if (playerInZone && Input.GetKeyDown(KeyCode.E))
-        {
-            Inventory inv = player.GetComponent<Inventory>();
-            if (inv != null && inv.hasKey)
-            {
-                Debug.Log("Door unlocked!");
 
-                Destroy(door);           // Destroy the visible door
-                Destroy(gameObject); // Destroy the trigger object (DoorTrigger)
-            }
-            else
-            {
-                Debug.Log("You need a key...");
-            }
+        Inventory inv = Player.Instance.GetComponent<Inventory>();
+        if (inv != null && inv.HasItem(requiredKey))
+        {
+            Debug.Log("Correct key used. Door unlocked!");
+            Destroy(door);       
+        }
+        else
+        {
+            Debug.Log("You don't have the correct key.");
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void OnPlayerInteractAlternate()
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInZone = true;
-            player = other.gameObject;
-            Debug.Log("Entered door interaction zone.");
-        }
     }
 
-    void OnTriggerExit(Collider other)
+    public void HasOwner()
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInZone = false;
-            player = null;
-            Debug.Log("Exited door interaction zone.");
-        }
     }
 }
 

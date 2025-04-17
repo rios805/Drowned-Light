@@ -1,12 +1,26 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-     public bool hasKey = false;
+    public List<KeyItemSO> collectedItems = new List<KeyItemSO>();
 
-    public void PickUpKey()
+    public void AddItem(KeyItemSO item)
     {
-        hasKey = true;
-        Debug.Log("Key collected!");
+        if (!collectedItems.Contains(item))
+        {
+            collectedItems.Add(item);
+            Debug.Log($"Item added to inventory: {item.itemName}");
+        }
+    }
+
+    public bool HasItem(string itemName)
+    {
+        return collectedItems.Exists(i => i.itemName == itemName);
+    }
+
+    public bool HasItem(KeyItemSO item)
+    {
+        return collectedItems.Contains(item);
     }
 }
