@@ -42,33 +42,28 @@ public class Player : MonoBehaviour
     {
         // Crouching
         if (inputManager.PlayerInput_Crouch()) {
-            isCrouched = !isCrouched;
-            if (isCrouched) {
-                controller.height = 1f;
-            }
-            else {
+            isCrouched = true;
+            controller.height = 1f;
+        } else {
+            if (isCrouched && !Physics.Raycast(playerTopPoint.transform.position, playerTopPoint.transform.up, 1f)) {
+                isCrouched = false;
                 controller.height = 2f;
             }
         }
         
         // Player Speed
-        if (inputManager.PlayerInput_Sprint()) {
-            isSprinting = !isSprinting;
-        }
-        if (isSprinting && stamina > 0f){
+        if (inputManager.PlayerInput_Sprint() && stamina > 0f) {
+            isSprinting = true;
             playerSpeed = sprintSpeed;
             stamina -= Time.deltaTime * 20f;
-            Debug.Log(stamina);
             if (stamina < 0.1f) {
                 isSprinting = false;
             }
-        }else {
+        } else {
+            isSprinting = false;
             playerSpeed = defaultPlayerSpeed;
-            if (stamina <= 100f) {
+            if (stamina < 100f) {
                 stamina += Time.deltaTime * 5f;
-            }
-            if (stamina > 100f) {
-                stamina = 100f;
             }
         }
         
