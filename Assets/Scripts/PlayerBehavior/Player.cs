@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         cameraTransform = Camera.main.transform;
         Instance = this;
         playerSpeed = defaultPlayerSpeed;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
