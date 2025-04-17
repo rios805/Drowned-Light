@@ -1834,6 +1834,9 @@ Transform:
 =======
 --- !u!1 &845662358
 >>>>>>> Stashed changes
+=======
+--- !u!1 &845662358
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2045,6 +2048,9 @@ MeshRenderer:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!33 &1136852050
+=======
+--- !u!33 &1113879807
+>>>>>>> Stashed changes
 =======
 --- !u!33 &1113879807
 >>>>>>> Stashed changes
@@ -2743,6 +2749,11 @@ GameObject:
   m_Layer: 7
   m_Name: Statues
 >>>>>>> Stashed changes
+=======
+  - component: {fileID: 1483528461}
+  m_Layer: 7
+  m_Name: Statues
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2752,6 +2763,11 @@ GameObject:
 <<<<<<< Updated upstream
 --- !u!65 &1933584391
 BoxCollider:
+=======
+--- !u!4 &1483528461
+Transform:
+>>>>>>> Stashed changes
+=======
 --- !u!4 &1483528461
 Transform:
 >>>>>>> Stashed changes
@@ -3053,6 +3069,9 @@ MeshRenderer:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!33 &1933584393
+=======
+--- !u!33 &2080140878
+>>>>>>> Stashed changes
 =======
 --- !u!33 &2080140878
 >>>>>>> Stashed changes
