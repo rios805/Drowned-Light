@@ -81,14 +81,13 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(desiredPatrolPoint);
             agent.speed = runSpeed;
             
-            if (agent.remainingDistance <= attackRange && attackCooldown <= 0) {
+            if (agent.remainingDistance <= attackRange) {
                 // Animation stuff later
                 
                 // Take the amount of damage
                 player.TakeDamage(damageAmount);
                 
                 // Setup attack cooldown
-                isRunning = false;
             }
         }
     }
