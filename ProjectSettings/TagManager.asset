@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Interactable
   - Battery
   layers:
   - Default
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 
