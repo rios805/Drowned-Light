@@ -4,6 +4,7 @@ public class PlayerInteract : MonoBehaviour
 {
     [Header("Interact Settings")]
     public float interactDistance = 3f; 
+    public float sphereCastRadius = 0.5f;
     public LayerMask interactLayer;
     public Transform holdPoint; 
 
@@ -62,7 +63,13 @@ public class PlayerInteract : MonoBehaviour
 
     void TryPlace()
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward,
+        var cam = Camera.main;
+        if(cam == null)
+        {
+            return;
+        }
+
+        if (Physics.SphereCast(cam.transform.position, sphereCastRadius, cam.transform.forward,
                             out RaycastHit hit, interactDistance))
         {
             var ped = hit.collider.GetComponent<Pedestal>();
