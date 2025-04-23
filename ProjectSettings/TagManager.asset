@@ -4,16 +4,18 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Interactable
   - Battery
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - Interactable
   - Water
   - UI
+  - Interact
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 
