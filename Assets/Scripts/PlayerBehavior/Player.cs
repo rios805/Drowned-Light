@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
     // Singleton 
     public static Player Instance{ get; private set; }
     

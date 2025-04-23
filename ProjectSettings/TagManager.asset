@@ -13,6 +13,7 @@ TagManager:
   - Interactable
   - Water
   - UI
+  - Interact
   - Enemy
   - Player
   - 
