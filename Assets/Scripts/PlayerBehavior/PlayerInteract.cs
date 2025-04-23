@@ -1,105 +1,61 @@
 using UnityEngine;
+using System;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [Header("Interact Settings")]
-    public float interactDistance = 3f; 
-    public float sphereCastRadius = 0.5f;
-    public LayerMask interactLayer;
-    public Transform holdPoint; 
+    public float interactRange = 3f;
+    public LayerMask interactMask;
 
-   // private float dropForce = 2f; 
+    private IInteractbleItem currentItem;
+    private Transform currentItemTransform;
 
-    GameObject heldObject; 
-
-    void Start()
+    private void Start()
     {
-        var cam = Camera.main; 
-        if(cam != null && holdPoint != null)
+        if (InputManager.Instance != null)
         {
-            Vector3 worldPos = holdPoint.position; 
-            Quaternion worldRot = holdPoint.rotation; 
-
-            holdPoint.SetParent(cam.transform);
-
-            holdPoint.position = worldPos;
-            holdPoint.rotation = worldRot;
+            InputManager.Instance.OnInteractAction += HandleInteract;
+        }
+        else
+        {
+            Debug.LogWarning("InputManager not initialized when PlayerInteract started.");
         }
     }
 
-    // Update is called once per frame
+    private void OnDisable()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.OnInteractAction -= HandleInteract;
+        }
+    }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)){
-            Debug.Log("E PRESSED!");
-            if(heldObject == null)
-            {
-                TryPickUp();
-            }
-            else
-            {
-                DropItem(); 
-            }
-        }
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
 
-        else if(Input.GetMouseButtonDown(0) && heldObject != null)
-        {
-            Debug.Log("Left Mouse Click!");
-            TryPlace();
-        }
-    }
+        Debug.DrawRay(transform.position, transform.forward * interactRange, Color.red);
 
-    void TryPickUp()
-    {
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward,
-                            out RaycastHit hit, interactDistance, interactLayer))
+        currentItem = null;
+        currentItemTransform = null;
+
+        if (Physics.SphereCast(ray, 0.5f, out hit, interactRange, interactMask))
         {
-            var pick = hit.collider.GetComponent<Pickupable>();
-            if (pick != null && !pick.IsPicked){
-                heldObject = pick.PickUp(holdPoint);
+            IInteractbleItem item = hit.collider.GetComponent<IInteractbleItem>();
+            if (item != null)
+            {
+                currentItem = item;
+                currentItemTransform = hit.transform;
+                Debug.Log($"Looking at: {currentItemTransform.name}");
             }
         }
     }
 
-    void TryPlace()
+    private void HandleInteract(object sender, EventArgs e)
     {
-        var cam = Camera.main;
-        if(cam == null)
+        if (currentItem != null)
         {
-            return;
+            currentItem.OnPlayerInteract();
         }
-
-        if (Physics.SphereCast(cam.transform.position, sphereCastRadius, cam.transform.forward,
-                            out RaycastHit hit, interactDistance))
-        {
-            var ped = hit.collider.GetComponent<Pedestal>();
-            if (ped != null)
-            {
-                var pick = heldObject.GetComponent<Pickupable>();
-                if (ped.TryPlace(pick)){
-                    heldObject = null;
-                }
-            }
-        }
-    }
-
-    void DropItem()
-    {
-        if(heldObject == null)
-        {
-            return; 
-        }
-
-        var pickable = heldObject.GetComponent<Pickupable>();
-        pickable.Drop(); 
-
-        heldObject.transform.SetParent(null); 
-
-        if(heldObject.TryGetComponent<Rigidbody>(out var rb))
-        {
-            rb.useGravity = true;   
-        }
-
-        heldObject = null;
     }
 }
