@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Interactable
   - Battery
   - Pushable
   layers:
@@ -13,8 +14,9 @@ TagManager:
   - Interactable
   - Water
   - UI
+  - Interact
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 
