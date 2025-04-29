@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3128233641355918854}
   - component: {fileID: 7762902858058072860}
   - component: {fileID: 8564298562781709049}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 1071043673524792076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8333929426922758571}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 5247585479772157308}
   - component: {fileID: 1581100112461745422}
   - component: {fileID: 920976393135118615}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: BaseEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +167,7 @@ MonoBehaviour:
   runSeconds: 0
   runMin: 5
   runMax: 10
+  attackCooldown: 0
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -175,7 +176,6 @@ MonoBehaviour:
   - {fileID: 0}
   walkSpeed: 2
   runSpeed: 5
-  idleSeconds: 0
   offset: {x: 0, y: 1, z: 0.5}
   player: {fileID: 0}
 --- !u!195 &1581100112461745422
@@ -187,7 +187,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8582051962043987817}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -196,7 +196,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 4
+  m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8333929426922758571}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
