@@ -16,6 +16,8 @@ public class Pickupable : MonoBehaviour
         // disable physics so it won’t fall
         if (rb != null)
         {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             rb.isKinematic = true; 
             rb.useGravity = false; 
         }
@@ -26,7 +28,7 @@ public class Pickupable : MonoBehaviour
         }
 
         // parent under the holdPoint
-        transform.SetParent(holdPoint);
+        transform.SetParent(holdPoint, true);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         return gameObject;
@@ -35,6 +37,8 @@ public class Pickupable : MonoBehaviour
     public void Drop()
     {
         IsPicked = false;
+
+        transform.SetParent(null, true);
 
         if (rb != null)
         {
