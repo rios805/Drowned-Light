@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb3088672ee9e8418ebdbc9abe5aaca, type: 3}
+  m_Name: SerpentFlowerCoin
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5923917143019019207, guid: 33ccedc1bc98ca647a382fa559994251, type: 3}
+  uIIcon: {fileID: 0}
+  itemName: Coin
+  sideA_ID: serpent
+  sideB_ID: flower
+  sideA_Icon: {fileID: 952184350, guid: 5e0fe930df57dc14ab36643b367d142b, type: 3}
+  sideB_Icon: {fileID: -296444073, guid: 5e0fe930df57dc14ab36643b367d142b, type: 3}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7640784791142713964}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlacePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8582389193003705417}
   - component: {fileID: 4570294002571307428}
   - component: {fileID: 8055932774310288625}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Pedestal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

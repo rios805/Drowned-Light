@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb3088672ee9e8418ebdbc9abe5aaca, type: 3}
   m_Name: CaveKey
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 7028443177940321407, guid: b6921bf9bd181284eb92306e718bd3f9, type: 3}
   uIIcon: {fileID: 0}
-  itemName: 
+  itemName: Cave Key
+  sideA_ID: 
+  sideB_ID: 
+  sideA_Icon: {fileID: 0}
+  sideB_Icon: {fileID: 0}
