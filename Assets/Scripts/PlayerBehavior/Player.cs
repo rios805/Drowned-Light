@@ -28,17 +28,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform playerTopPoint;
     
     [Header("Player Settings")]
-    [SerializeField] private float startStamina = 100f;
-    [SerializeField] private float startSanity = 100f;
-    [SerializeField] private int startHealth = 100;
-    [SerializeField] private float stamina;
-    [SerializeField] private float sanity;
-    [SerializeField] private int health;
-
-    [Header("Player UI")]
-    [SerializeField] private Image healthBar;
-    [SerializeField] private Image staminaBar;
-    [SerializeField] private Image sanityBar;
+    [SerializeField] public float startStamina = 100f;
+    [SerializeField] public float startSanity = 100f;
+    [SerializeField] public int startHealth = 100;
+    private float stamina;
+    private float sanity;
+    private int health;
     
     [Header("Camera Settings + Input")]
     [SerializeField]private CinemachineCamera virtualCamera;
@@ -104,7 +99,6 @@ public class Player : MonoBehaviour
             isSprinting = true;
             stamina -= Time.deltaTime * 20f;
 
-            staminaBar.fillAmount = stamina/startStamina; 
             if (stamina < 0.1f) {
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
                 isSprinting = false;
@@ -115,7 +109,6 @@ public class Player : MonoBehaviour
             if (stamina < 100f) {
                 stamina += Time.deltaTime * 5f;
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
-                staminaBar.fillAmount = stamina/startStamina; 
                 OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -189,11 +182,8 @@ public class Player : MonoBehaviour
         if (damageClips.Count > 0) {
             int index = UnityEngine.Random.Range(0, damageClips.Count);
             audioSource.PlayOneShot(damageClips[index]);
-        }
-        
+        }      
         health -= damage;
-
-        healthBar.fillAmount = health/startHealth; 
         if (health <= 0f) {
             OnPlayerKilled?.Invoke(this, EventArgs.Empty);
             Time.timeScale = 0f;
