@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb3088672ee9e8418ebdbc9abe5aaca, type: 3}
   m_Name: ManSwordCoin
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4312764028895568681, guid: 35975424b680f0944a09e12b3e6296ad, type: 3}
   uIIcon: {fileID: 0}
-  itemName: 
+  itemName: Coin
   sideA_ID: man
   sideB_ID: sword
   sideA_Icon: {fileID: -1894937761, guid: 5e0fe930df57dc14ab36643b367d142b, type: 3}
