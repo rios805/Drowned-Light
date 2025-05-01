@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
         playerSpeed = defaultPlayerSpeed;
         playerTargetHeight = controller.height;
         playerTargetCenter = controller.center;
