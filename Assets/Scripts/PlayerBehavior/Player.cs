@@ -55,13 +55,11 @@ public class Player : MonoBehaviour
     
     // Needed variables
     private bool groundedPlayer, isCrouched, isSprinting;
-    private float playerSpeed,playerTargetHeight, targetFOV;
+    private float playerSpeed,playerTargetHeight, targetFOV, staminaCoolDown, enemyCheckTimer;
     private CharacterController controller;
     private Vector3 playerTargetCenter, lastPosition, currentVelocity;
     private Transform cameraTransform;
     private float cameraOffset = 0.5f;
-    private float enemyCheckTimer;
-    private float staminaCoolDown;
 
     private void Awake() {
         Instance = this;
@@ -178,16 +176,20 @@ public class Player : MonoBehaviour
         enemyCheckTimer -= Time.deltaTime;
         if (enemyCheckTimer <= 0f) {
             GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject enemy in allEnemies)
-            {
-                if (IsEnemyVisible(enemy))
-                {
-                    Debug.Log("Enemy is on screen and in FOV: " + enemy.name);
-                    LoseSanity(10);
-                    // Reduce sanity, trigger AI reaction.
+            foreach (GameObject enemy in allEnemies) {
+                bool isVisible = IsEnemyVisible(enemy);
+                IEnemy ienemy = enemy.GetComponent<IEnemy>();
+                
+                if (IsEnemyVisible(enemy)) {
+                    //Debug.Log("Enemy is on screen and in FOV: " + enemy.name);
+                    LoseSanity(0.5f);
+                    ienemy.SeenByPlayer(isVisible);
+                }
+                else {
+                    ienemy.SeenByPlayer(isVisible);
                 }
             }
-            enemyCheckTimer = 1f;
+            enemyCheckTimer = .5f;
         }
         
 
@@ -207,7 +209,7 @@ public class Player : MonoBehaviour
         OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void LoseSanity(int lostSanity) {
+    public void LoseSanity(float lostSanity) {
         sanity -= lostSanity;
         OnPlayerSanityChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -232,13 +234,13 @@ public class Player : MonoBehaviour
         return sanity;
     }
 
-    public bool IsEnemyVisible(GameObject enemy, float fovAngle = 60f) {
+    public bool IsEnemyVisible(GameObject enemy, float fovAngle = 90f) {
         // Enemy on screen?
         Renderer renderer = enemy.GetComponentInChildren<Renderer>();
         if (renderer == null || !renderer.isVisible)
             return false;
         // In Fov?
-        Vector3 toEnemy = (enemy.transform.position - cameraTransform.position).normalized;
+        Vector3 toEnemy = (enemy.GetComponent<Collider>().bounds.center - cameraTransform.position).normalized;
         Vector3 viewDir = cameraTransform.forward;
         float dot = Vector3.Dot(viewDir, toEnemy);
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
@@ -247,6 +249,7 @@ public class Player : MonoBehaviour
         if (angle <= fovAngle / 2f) {
             // Line of sight raycast
             if (Physics.Raycast(cameraTransform.position, toEnemy, out RaycastHit hit, 100f)) {
+                //Debug.Log(hit.collider.gameObject.name);
                 return hit.collider.gameObject == enemy;
             }
         }
