@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IEnemy
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator animator;
@@ -152,5 +152,12 @@ public class EnemyAI : MonoBehaviour
         currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
         //animator.Play("Walk");
+    }
+
+    public string GetEnemyType() {
+        return "Abomination";
+    }
+
+    public void SeenByPlayer(bool isSeen) {
     }
 }
