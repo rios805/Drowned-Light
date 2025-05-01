@@ -30,16 +30,16 @@ MonoBehaviour:
   active: 1
   _weight:
     m_OverrideState: 1
-    m_Value: 0.093
+    m_Value: 0.122
   _bleed:
     m_OverrideState: 1
-    m_Value: 2.19
+    m_Value: 2.41
   _rocking:
     m_OverrideState: 1
-    m_Value: 0.0165
+    m_Value: 0.0158
   _tape:
     m_OverrideState: 1
-    m_Value: 0.904
+    m_Value: 0.429
   _noise:
     m_OverrideState: 1
     m_Value: 0.185
@@ -48,7 +48,7 @@ MonoBehaviour:
     m_Value: 0
   _glitch:
     m_OverrideState: 1
-    m_Value: {r: 0.5, g: 0.011792451, b: 0.011792451, a: 1}
+    m_Value: {r: 0.7264151, g: 0.01027944, b: 0.01027944, a: 1}
 --- !u!114 &8400086277365923669
 MonoBehaviour:
   m_ObjectHideFlags: 3
