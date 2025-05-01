@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -27,9 +28,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform playerTopPoint;
     
     [Header("Player Settings")]
-    [SerializeField] private float stamina = 100f;
-    [SerializeField] private float sanity = 100f;
-    [SerializeField] private int health = 100;
+    [SerializeField] public float startStamina = 100f;
+    [SerializeField] public float startSanity = 100f;
+    [SerializeField] public int startHealth = 100;
+    private float stamina;
+    private float sanity;
+    private int health;
     
     [Header("Camera Settings + Input")]
     [SerializeField]private CinemachineCamera virtualCamera;
@@ -44,6 +48,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float walkStepRate = 0.5f;
     [SerializeField] private float sprintStepRate = 0.3f;
     [SerializeField] private float crouchStepRate = 0.8f;
+
+    [Header("Push Settings")]
+    [SerializeField] private float pushStrength = 3f;
 
     private float footstepTimer = .5f;
     private bool isMoving;
@@ -69,6 +76,9 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         footstepTimer = walkStepRate;
+        health = startHealth;
+        stamina = startStamina;
+        sanity = startSanity;
     }
     void Update()
     {
@@ -80,7 +90,7 @@ public class Player : MonoBehaviour
         } else {
             if (isCrouched && !Physics.Raycast(playerTopPoint.transform.position, playerTopPoint.transform.up, 1f)) {
                 isCrouched = false;
-                playerTargetHeight = 2f;
+                playerTargetHeight = 2f; 
                 playerTargetCenter = new Vector3(0, 1f, 0);
             }
         }
@@ -88,6 +98,7 @@ public class Player : MonoBehaviour
         if (inputManager.PlayerInput_Sprint() && stamina > 0f && !isCrouched) {
             isSprinting = true;
             stamina -= Time.deltaTime * 20f;
+
             if (stamina < 0.1f) {
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
                 isSprinting = false;
@@ -171,8 +182,7 @@ public class Player : MonoBehaviour
         if (damageClips.Count > 0) {
             int index = UnityEngine.Random.Range(0, damageClips.Count);
             audioSource.PlayOneShot(damageClips[index]);
-        }
-        
+        }      
         health -= damage;
         if (health <= 0f) {
             OnPlayerKilled?.Invoke(this, EventArgs.Empty);
@@ -199,5 +209,16 @@ public class Player : MonoBehaviour
 
     public float GetSanity() {
         return sanity;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        
+        var rb = hit.collider.attachedRigidbody;
+        if (rb == null || rb.isKinematic) return;
+
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0f, hit.moveDirection.z);
+
+        rb.linearVelocity = pushDir * pushStrength;
     }
 }
