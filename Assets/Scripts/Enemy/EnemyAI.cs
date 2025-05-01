@@ -89,7 +89,6 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                animator.Play("Idle");
                 agent.isStopped = true;
                 currentState = EnemyState.Idle;
                 StartCoroutine(Idle());
