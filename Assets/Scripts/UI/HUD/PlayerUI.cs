@@ -26,21 +26,21 @@ public class PlayerUI : MonoBehaviour
 
     private void Player_OnPlayerHealthChanged(object sender, System.EventArgs e ) {
         float health = player.GetHealth();
-        float healthFill = health / player.startHealth;
+        float healthFill = health / 100;
         healthBar.fillAmount = healthFill;
         showStats();
     }
 
     private void Player_OnPlayerSanityChanged(object sender, System.EventArgs e) {
         float sanity = player.GetSanity();
-        float sanityFill  = sanity / player.startSanity;
+        float sanityFill  = sanity / 100;
         sanityBar.fillAmount = sanityFill;
         showStats();
     }
 
     private void Player_OnPlayerStaminaChanged(object sender, System.EventArgs e) {
         float stamina = player.GetStamina();
-        float staminaFill = stamina / player.startStamina; 
+        float staminaFill = stamina / 100;
         staminaBar.fillAmount = staminaFill; 
         showStats();
     }
