@@ -197,8 +197,7 @@ public class Player : MonoBehaviour
         if (damageClips.Count > 0) {
             int index = UnityEngine.Random.Range(0, damageClips.Count);
             audioSource.PlayOneShot(damageClips[index]);
-        }
-        
+        }      
         health -= damage;
         
         if (health <= 0f) {
