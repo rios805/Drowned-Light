@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PickupItem : MonoBehaviour, IInteractbleItem
 {
-    [SerializeField] private KeyItemSO itemData;
+    [SerializeField] public KeyItemSO itemData;
 
     public void OnPlayerInteract()
     {

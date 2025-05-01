@@ -18,6 +18,7 @@ TagManager:
   - Enemy
   - Player
   - Post_Processing
+  - ItemDisplay
   - 
   - 
   - 
