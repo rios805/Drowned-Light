@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField]private Transform cameraFollowTransform;
     [SerializeField]private InputManager inputManager;
     [SerializeField]private float mainFOV = 60f;
+    [SerializeField] private LayerMask enemyLayerMask;
     
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         // Check if player is crouching
         if (inputManager.PlayerInput_Crouch()) {
             isCrouched = true;
@@ -165,6 +167,17 @@ public class Player : MonoBehaviour
                 PlayFootstep();
             }
         }
+        
+        foreach (GameObject enemy in allEnemies)
+        {
+            if (IsEnemyVisible(enemy))
+            {
+                Debug.Log("Enemy is on screen and in FOV: " + enemy.name);
+                
+                // Reduce sanity, trigger AI reaction.
+            }
+        }
+        
     }
 
     public void TakeDamage(int damage) {
@@ -199,5 +212,29 @@ public class Player : MonoBehaviour
 
     public float GetSanity() {
         return sanity;
+    }
+
+    public bool IsEnemyVisible(GameObject enemy, float fovAngle = 60f) {
+        // Enemy on screen?
+        Renderer renderer = enemy.GetComponentInChildren<Renderer>();
+        if (renderer == null || !renderer.isVisible)
+            return false;
+        // In Fov?
+        Vector3 toEnemy = (enemy.transform.position - cameraTransform.position).normalized;
+        Vector3 viewDir = cameraTransform.forward;
+        float dot = Vector3.Dot(viewDir, toEnemy);
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        
+        Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 100f, Color.red, 0.5f);
+        if (angle > fovAngle / 2f)
+            return false;
+
+        // Line of sight raycast
+        if (Physics.Raycast(cameraTransform.position, toEnemy, out RaycastHit hit, 100f, enemyLayerMask))
+        {
+            return hit.collider.gameObject == enemy;
+        }
+
+        return false;
     }
 }
