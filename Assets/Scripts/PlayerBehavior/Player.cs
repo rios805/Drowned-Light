@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float sprintStepRate = 0.3f;
     [SerializeField] private float crouchStepRate = 0.8f;
 
+    [Header("Push Settings")]
+    [SerializeField] private float pushStrength = 3f;
+
     private float footstepTimer = .5f;
     private bool isMoving;
     
@@ -236,5 +239,14 @@ public class Player : MonoBehaviour
         }
 
         return false;
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        
+        var rb = hit.collider.attachedRigidbody;
+        if (rb == null || rb.isKinematic) return;
+
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0f, hit.moveDirection.z);
+
+        rb.linearVelocity = pushDir * pushStrength;
     }
 }
