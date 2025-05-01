@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -27,9 +28,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform playerTopPoint;
     
     [Header("Player Settings")]
-    [SerializeField] private float stamina = 100f;
-    [SerializeField] private float sanity = 100f;
-    [SerializeField] private int health = 100;
+    [SerializeField] private float startStamina = 100f;
+    [SerializeField] private float startSanity = 100f;
+    [SerializeField] private int startHealth = 100;
+    [SerializeField] private float stamina;
+    [SerializeField] private float sanity;
+    [SerializeField] private int health;
+
+    [Header("Player UI")]
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Image staminaBar;
+    [SerializeField] private Image sanityBar;
     
     [Header("Camera Settings + Input")]
     [SerializeField]private CinemachineCamera virtualCamera;
@@ -72,6 +81,9 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         footstepTimer = walkStepRate;
+        health = startHealth;
+        stamina = startStamina;
+        sanity = startSanity;
     }
     void Update()
     {
@@ -83,7 +95,7 @@ public class Player : MonoBehaviour
         } else {
             if (isCrouched && !Physics.Raycast(playerTopPoint.transform.position, playerTopPoint.transform.up, 1f)) {
                 isCrouched = false;
-                playerTargetHeight = 2f;
+                playerTargetHeight = 2f; 
                 playerTargetCenter = new Vector3(0, 1f, 0);
             }
         }
@@ -91,6 +103,8 @@ public class Player : MonoBehaviour
         if (inputManager.PlayerInput_Sprint() && stamina > 0f && !isCrouched) {
             isSprinting = true;
             stamina -= Time.deltaTime * 20f;
+
+            staminaBar.fillAmount = stamina/startStamina; 
             if (stamina < 0.1f) {
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
                 isSprinting = false;
@@ -101,6 +115,7 @@ public class Player : MonoBehaviour
             if (stamina < 100f) {
                 stamina += Time.deltaTime * 5f;
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
+                staminaBar.fillAmount = stamina/startStamina; 
                 OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -177,6 +192,8 @@ public class Player : MonoBehaviour
         }
         
         health -= damage;
+
+        healthBar.fillAmount = health/startHealth; 
         if (health <= 0f) {
             OnPlayerKilled?.Invoke(this, EventArgs.Empty);
             Time.timeScale = 0f;
