@@ -3,18 +3,30 @@ using UnityEngine;
 public class DoorInteract : MonoBehaviour, IInteractbleItem
 {
     [SerializeField] private KeyItemSO requiredKey;
-    [SerializeField] private GameObject door;
+    private DoorController door;
 
-    private bool playerInZone = false;
-
+    private void Awake()
+    {
+        door = GetComponent<DoorController>();
+        if (door == null)
+            UnityEngine.Debug.LogWarning("DoorController not found on this object!");
+    }
+    
     public void OnPlayerInteract()
     {
-
         Inventory inv = Player.Instance.GetComponent<Inventory>();
+
         if (inv != null && inv.HasItem(requiredKey))
         {
             Debug.Log("Correct key used. Door unlocked!");
-            Destroy(door);       
+            if (door != null)
+            {
+                door.OpenDoor();
+            }
+            else
+            {
+                Debug.LogWarning("DoorController not assigned");
+            }   
         }
         else
         {

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3f9796-946b-40af-a03d-cb3c9f743684" name="Changes" comment="" />
+    <list default="true" id="4d3f9796-946b-40af-a03d-cb3c9f743684" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +28,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy/StatueEnemyAI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interfaces/IEnemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/HUD/PlayerHUD.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -110,6 +115,9 @@
       <workItem from="1745123718982" duration="6000" />
       <workItem from="1745977166497" duration="4000" />
       <workItem from="1745977177446" duration="908000" />
+      <workItem from="1745988994616" duration="8201000" />
+      <workItem from="1746071328443" duration="17867000" />
+      <workItem from="1746128645015" duration="446000" />
     </task>
     <servers />
   </component>

@@ -28,18 +28,16 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform playerTopPoint;
     
     [Header("Player Settings")]
-    [SerializeField] public float startStamina = 100f;
-    [SerializeField] public float startSanity = 100f;
-    [SerializeField] public int startHealth = 100;
-    private float stamina;
-    private float sanity;
-    private int health;
+    [SerializeField] private float stamina;
+    [SerializeField] private float sanity;
+    [SerializeField] private int health;
     
     [Header("Camera Settings + Input")]
     [SerializeField]private CinemachineCamera virtualCamera;
     [SerializeField]private Transform cameraFollowTransform;
     [SerializeField]private InputManager inputManager;
     [SerializeField]private float mainFOV = 60f;
+    [SerializeField] private LayerMask enemyLayerMask;
     
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -57,7 +55,7 @@ public class Player : MonoBehaviour
     
     // Needed variables
     private bool groundedPlayer, isCrouched, isSprinting;
-    private float playerSpeed,playerTargetHeight, targetFOV;
+    private float playerSpeed,playerTargetHeight, targetFOV, staminaCoolDown, enemyCheckTimer;
     private CharacterController controller;
     private Vector3 playerTargetCenter, lastPosition, currentVelocity;
     private Transform cameraTransform;
@@ -76,9 +74,6 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         footstepTimer = walkStepRate;
-        health = startHealth;
-        stamina = startStamina;
-        sanity = startSanity;
     }
     void Update()
     {
@@ -95,19 +90,21 @@ public class Player : MonoBehaviour
             }
         }
         // Check if player is sprinting
-        if (inputManager.PlayerInput_Sprint() && stamina > 0f && !isCrouched) {
+        staminaCoolDown -= Time.deltaTime;
+        if (inputManager.PlayerInput_Sprint() && stamina > 0f && !isCrouched && staminaCoolDown < 0f) {
             isSprinting = true;
             stamina -= Time.deltaTime * 20f;
-
+            
             if (stamina < 0.1f) {
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
                 isSprinting = false;
+                staminaCoolDown = 4f;
             }
             OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
         } else {
             isSprinting = false;
             if (stamina < 100f) {
-                stamina += Time.deltaTime * 5f;
+                stamina += Time.deltaTime * 3f;
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
                 OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -176,6 +173,26 @@ public class Player : MonoBehaviour
                 PlayFootstep();
             }
         }
+        enemyCheckTimer -= Time.deltaTime;
+        if (enemyCheckTimer <= 0f) {
+            GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in allEnemies) {
+                bool isVisible = IsEnemyVisible(enemy);
+                IEnemy ienemy = enemy.GetComponent<IEnemy>();
+                
+                if (IsEnemyVisible(enemy)) {
+                    //Debug.Log("Enemy is on screen and in FOV: " + enemy.name);
+                    LoseSanity(0.5f);
+                    ienemy.SeenByPlayer(isVisible);
+                }
+                else {
+                    ienemy.SeenByPlayer(isVisible);
+                }
+            }
+            enemyCheckTimer = .5f;
+        }
+        
+
     }
 
     public void TakeDamage(int damage) {
@@ -184,11 +201,17 @@ public class Player : MonoBehaviour
             audioSource.PlayOneShot(damageClips[index]);
         }      
         health -= damage;
+        
         if (health <= 0f) {
             OnPlayerKilled?.Invoke(this, EventArgs.Empty);
             Time.timeScale = 0f;
         }
         OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void LoseSanity(float lostSanity) {
+        sanity -= lostSanity;
+        OnPlayerSanityChanged?.Invoke(this, EventArgs.Empty);
     }
     
     private void PlayFootstep()
@@ -211,9 +234,34 @@ public class Player : MonoBehaviour
         return sanity;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
+    public bool IsEnemyVisible(GameObject enemy, float fovAngle = 90f) {
+        // Enemy on screen?
+        Renderer renderer = enemy.GetComponentInChildren<Renderer>();
+        if (renderer == null || !renderer.isVisible)
+            return false;
+        // In Fov?
+        Vector3 toEnemy = (enemy.GetComponent<Collider>().bounds.center - cameraTransform.position).normalized;
+        Vector3 viewDir = cameraTransform.forward;
+        float dot = Vector3.Dot(viewDir, toEnemy);
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+        Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 100f, Color.red, 0.5f);
+        if (angle <= fovAngle / 2f) {
+            // Line of sight raycast
+            if (Physics.Raycast(cameraTransform.position, toEnemy, out RaycastHit hit, 100f)) {
+                //Debug.Log(hit.collider.gameObject.name);
+                return hit.collider.gameObject == enemy;
+            }
+        }
         
+        
+
+        return false;
+
+        
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+
         var rb = hit.collider.attachedRigidbody;
         if (rb == null || rb.isKinematic) return;
 
