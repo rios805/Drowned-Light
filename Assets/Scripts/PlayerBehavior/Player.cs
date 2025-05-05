@@ -254,13 +254,9 @@ public class Player : MonoBehaviour
                 return hit.collider.gameObject == enemy;
             }
         }
-        
-        
-
         return false;
-
-        
     }
+    
     private void OnControllerColliderHit(ControllerColliderHit hit) {
 
         var rb = hit.collider.attachedRigidbody;

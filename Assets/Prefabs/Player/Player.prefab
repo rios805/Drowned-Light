@@ -269,7 +269,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 874887154699793481}
+  - {fileID: 3452134904699500999}
   m_Father: {fileID: 6820551961789803412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518506176616909737
@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 8883151651462368640}
   - component: {fileID: 6496260387254209584}
   - component: {fileID: 3598189885473008539}
+  - component: {fileID: 512727970718544114}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -333,9 +334,9 @@ MonoBehaviour:
   crouchSpeed: 1
   gravityValue: -9.81
   playerTopPoint: {fileID: 8015734395888001267}
-  stamina: 100
-  sanity: 100
-  health: 100
+  stamina: 300000
+  sanity: 300000
+  health: 300000
   virtualCamera: {fileID: 0}
   cameraFollowTransform: {fileID: 398547136604369779}
   inputManager: {fileID: 0}
@@ -355,7 +356,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4bf1915990cb4b64e88fcd795b42eacc, type: 3}
   - {fileID: 8300000, guid: 2ff6fd370219dce469a77cd6c31d2393, type: 3}
   - {fileID: 8300000, guid: 2f9e48ab74f7f80439f38631ef650bdd, type: 3}
-  walkStepRate: 0.2
+  walkStepRate: 0.15
   sprintStepRate: 0.1
   crouchStepRate: 0.3
   pushStrength: 3
@@ -379,8 +380,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.6
+  m_SlopeLimit: 20
+  m_StepOffset: 0.2
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -535,6 +536,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   holdPoint: {fileID: 7993147055585323984}
+--- !u!114 &512727970718544114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518506176616909737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c123e7797dd7a7a4296b3f492ec3588a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 3
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 72
 --- !u!1 &549043573348475354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1511,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1918,7 +1935,7 @@ RectTransform:
   m_AnchoredPosition: {x: -20, y: 20}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0}
---- !u!1001 &3901014653308451745
+--- !u!1001 &1580617733168625199
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1926,21 +1943,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7993147055585323984}
     m_Modifications:
+    - target: {fileID: 2022804969097888660, guid: 02df12730048ab84483b3d317cec1072, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 1295093860001419515}
+    - target: {fileID: 2022804969097888660, guid: 02df12730048ab84483b3d317cec1072, type: 3}
+      propertyPath: batteryText
+      value: 
+      objectReference: {fileID: 4937732146168185677}
     - target: {fileID: 2535620535478113475, guid: 02df12730048ab84483b3d317cec1072, type: 3}
       propertyPath: m_Name
       value: Flashlight
       objectReference: {fileID: 0}
     - target: {fileID: 4181320760413245416, guid: 02df12730048ab84483b3d317cec1072, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.016
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 4181320760413245416, guid: 02df12730048ab84483b3d317cec1072, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38300002
+      value: 0.285
       objectReference: {fileID: 0}
     - target: {fileID: 4181320760413245416, guid: 02df12730048ab84483b3d317cec1072, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1440002
+      value: -0.947
       objectReference: {fileID: 0}
     - target: {fileID: 4181320760413245416, guid: 02df12730048ab84483b3d317cec1072, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1973,43 +1998,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2535620535478113475, guid: 02df12730048ab84483b3d317cec1072, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8481709220318183027}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02df12730048ab84483b3d317cec1072, type: 3}
---- !u!4 &874887154699793481 stripped
+--- !u!4 &3452134904699500999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4181320760413245416, guid: 02df12730048ab84483b3d317cec1072, type: 3}
-  m_PrefabInstance: {fileID: 3901014653308451745}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1518668936379428706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2535620535478113475, guid: 02df12730048ab84483b3d317cec1072, type: 3}
-  m_PrefabInstance: {fileID: 3901014653308451745}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8481709220318183027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518668936379428706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8db7c2f559cb24e409c81658808088cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOn: 0
-  lightSource: {fileID: 0}
-  clickSound: {fileID: 6630539380684653305}
-  failSafe: 0
-  text: {fileID: 0}
-  batteryText: {fileID: 0}
-  lifetime: 100
-  batteries: 3
---- !u!82 &6630539380684653305 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7649179555772086616, guid: 02df12730048ab84483b3d317cec1072, type: 3}
-  m_PrefabInstance: {fileID: 3901014653308451745}
+  m_PrefabInstance: {fileID: 1580617733168625199}
   m_PrefabAsset: {fileID: 0}
