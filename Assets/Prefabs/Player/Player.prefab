@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5619646248343980016}
   - component: {fileID: 6417386683858696838}
   - component: {fileID: 548636898376890526}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BatteryCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7308625216527575571}
   - component: {fileID: 8398745323677166292}
   - component: {fileID: 1638448379328202472}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Rudy's Test Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,6 +169,7 @@ RectTransform:
   m_Children:
   - {fileID: 9124125748674014049}
   - {fileID: 7225425677532701039}
+  - {fileID: 2661741151097449576}
   m_Father: {fileID: 6820551961789803412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -252,7 +253,8 @@ GameObject:
   - component: {fileID: 3840021695369461204}
   - component: {fileID: 5876658960297518572}
   - component: {fileID: 8883151651462368640}
-  m_Layer: 7
+  - component: {fileID: 6496260387254209584}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -304,6 +306,9 @@ MonoBehaviour:
   cameraFollowTransform: {fileID: 398547136604369779}
   inputManager: {fileID: 0}
   mainFOV: 60
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   audioSource: {fileID: 8883151651462368640}
   footstepClips:
   - {fileID: 8300000, guid: cc03f90dc597fec4f9a9717e51315163, type: 3}
@@ -319,6 +324,7 @@ MonoBehaviour:
   walkStepRate: 0.2
   sprintStepRate: 0.1
   crouchStepRate: 0.3
+  pushStrength: 3
 --- !u!143 &3840021695369461204
 CharacterController:
   m_ObjectHideFlags: 0
@@ -454,6 +460,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &6496260387254209584
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518506176616909737}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &549043573348475354
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +494,7 @@ GameObject:
   - component: {fileID: 7404367285355547061}
   - component: {fileID: 1551509938732124683}
   - component: {fileID: 4715480674283225226}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BatteryOutline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +569,7 @@ GameObject:
   - component: {fileID: 8067929938698899741}
   - component: {fileID: 7652790533134920581}
   - component: {fileID: 4937732146168185677}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StaminaText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,8 +632,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -676,7 +705,7 @@ GameObject:
   - component: {fileID: 4298686828306101569}
   - component: {fileID: 5562303452534066069}
   - component: {fileID: 8533281152656855438}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,8 +770,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -815,7 +844,7 @@ GameObject:
   - component: {fileID: 7277822688246268841}
   - component: {fileID: 4376430153443374086}
   - component: {fileID: 7890492665783664788}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9124125748674014049}
   - component: {fileID: 955061465012181354}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: PlayerHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +1008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3102481589897070265}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1011,7 +1040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7225425677532701039}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: GameOverScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1050,7 +1079,7 @@ GameObject:
   - component: {fileID: 4682927890293270267}
   - component: {fileID: 403849709565363477}
   - component: {fileID: 8740423565258546624}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: SanityText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1113,8 +1142,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1186,7 +1215,7 @@ GameObject:
   - component: {fileID: 4812729979904998286}
   - component: {fileID: 5909147515615236175}
   - component: {fileID: 1295093860001419515}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: DeathText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5197656577698230961}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: PlayerTopPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1384,7 @@ GameObject:
   - component: {fileID: 1978857486826354212}
   - component: {fileID: 888115181256590321}
   - component: {fileID: 7148021552740633838}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FP_CAMERA
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1370,7 +1399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5442622236154044008}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1386,8 +1415,8 @@ Camera:
   m_GameObject: {fileID: 5442622236154044008}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1488,10 +1517,10 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1512,6 +1541,81 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &5831376795724960962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2661741151097449576}
+  - component: {fileID: 5392474601392026824}
+  - component: {fileID: 8333307030263113767}
+  m_Layer: 8
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2661741151097449576
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5831376795724960962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1779475739455029450}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 5, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5392474601392026824
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5831376795724960962}
+  m_CullTransparentMesh: 1
+--- !u!114 &8333307030263113767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5831376795724960962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6137645920985526618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,7 +1625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8015734395888001267}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CrouchedPlayerTopPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1554,7 +1658,7 @@ GameObject:
   - component: {fileID: 6158094520340611957}
   - component: {fileID: 2160362819812203056}
   - component: {fileID: 2793257336433065529}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BatteryPercentage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1629,7 +1733,7 @@ GameObject:
   - component: {fileID: 4590124891865608453}
   - component: {fileID: 4764493852027304573}
   - component: {fileID: 7222504304416486206}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1702,7 +1806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 398547136604369779}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CameraHeight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1733,7 +1837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3000307991969318817}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BatteryInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1759,6 +1863,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: -20, y: 20}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 1, y: 0}

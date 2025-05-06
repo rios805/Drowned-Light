@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Interactable
   - Battery
+  - Enemy
+  - Pushable
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,8 @@ TagManager:
   - Interact
   - Enemy
   - Player
-  - 
-  - 
-  - 
+  - Post_Processing
+  - ItemDisplay
   - 
   - 
   - 

@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IEnemy
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator animator;
@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
     }
     private EnemyState currentState;
 
-    private void Start() {
+    private void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
@@ -58,7 +58,6 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
         CheckForPlayer();
-        //Debug.Log(currentState);
     }
     
     private void CheckForPlayer()
@@ -76,6 +75,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Patrol()
     {
+        //eanimator.Play("Walk");
         agent.speed = walkSpeed;
         agent.SetDestination(currentPatrolPoint.position);
 
@@ -98,10 +98,11 @@ public class EnemyAI : MonoBehaviour
     
     private void Chase()
     {
+        agent.isStopped = false;
         agent.speed = runSpeed;
         agent.SetDestination(player.transform.position);
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        
+        //animator.Play("Chase");
         if (distance <= attackRange)
         {
             currentState = EnemyState.Attack;
@@ -116,6 +117,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Attack()
     {
+        //animator.Play("Attack");
         agent.isStopped = true;
         agent.velocity = Vector3.zero; 
         agent.ResetPath();
@@ -141,7 +143,7 @@ public class EnemyAI : MonoBehaviour
         currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
         
-        // Animation stuff later
+        //animator.Play("Idle");
     }
 
     IEnumerator ResumePatrol()
@@ -149,5 +151,13 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(runMin, runMax));
         currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
+        //animator.Play("Walk");
+    }
+
+    public string GetEnemyType() {
+        return "Abomination";
+    }
+
+    public void SeenByPlayer(bool isSeen) {
     }
 }
