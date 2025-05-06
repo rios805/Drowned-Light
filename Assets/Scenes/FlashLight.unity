@@ -1289,7 +1289,7 @@ MonoBehaviour:
   m_ScaleMode: 0
   m_Offset: {x: 0.426816, y: -0.18001866, z: 0.98881865}
   m_Size: {x: 4.0994234, y: 3.9169421, z: 0.18017864}
-  m_FadeFactor: 1
+  m_FadeFactor: 0.058
 --- !u!1818360609 &1316077178
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -1841,7 +1841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4321540534805540068, guid: 02df12730048ab84483b3d317cec1072, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
