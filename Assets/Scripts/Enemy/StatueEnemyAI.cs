@@ -8,6 +8,7 @@ public class StatueEnemyAI : MonoBehaviour, IEnemy
     [SerializeField] private int damageAmount;
     [SerializeField] private float sightRange, attackRange, attackCooldown, runSpeed;
     [SerializeField] private GameObject attackVisual,idleVisual,seenVisual, currentVisual;
+    private AudioSource audioSource;
     
     [SerializeField]private Vector3 offset;
     private float lastAttackTime = 0f;
@@ -28,15 +29,19 @@ public class StatueEnemyAI : MonoBehaviour, IEnemy
         currentState = EnemyState.Idle;
         currentVisual = seenVisual;
         seenOnce = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() {
         switch (currentState) {
             case EnemyState.Idle:
+                audioSource.Stop();
                 break;
             case EnemyState.Seen:
+                audioSource.Play();
                 break;
             case EnemyState.Chase:
+                audioSource.gameObject.SetActive(true);
                 if (playerIsLooking) {
                     SeenByPlayer(true);
                     return;
