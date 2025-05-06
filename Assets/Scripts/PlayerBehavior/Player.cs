@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
         } else {
             isSprinting = false;
             if (stamina < 100f) {
-                stamina += Time.deltaTime * 3f;
+                stamina += Time.deltaTime * 6f;
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
                 OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
                 else {
                     ienemy.SeenByPlayer(isVisible);
                     if (flashLight.isOn) {
-                        GainSanity(0.01f);
+                        GainSanity(0.05f);
                     }
                 }
             }
