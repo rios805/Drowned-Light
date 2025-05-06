@@ -40,7 +40,7 @@ public class FlashLightController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && lifetime > 0)
         {
             if(isOn == false && failSafe == false)
             {
