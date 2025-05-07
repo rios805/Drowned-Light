@@ -8,8 +8,12 @@ public class FlashLightController : MonoBehaviour
 
     public bool isOn = false;
     public GameObject lightSource;
+    public GameObject laserBeam;
     public AudioSource clickSound;
     public bool failSafe = false;
+    private bool laserOnCooldown = false;
+    private bool laserIsOn = false;
+    
 
     public TMP_Text text;
     public TMP_Text batteryText;
@@ -69,6 +73,30 @@ public class FlashLightController : MonoBehaviour
                 if (lifetime > 100f) lifetime = 100f;
             }
         }
+
+    if (Input.GetKeyDown(KeyCode.V))
+{
+    if (laserBeam == null || laserOnCooldown)
+        return;
+
+    if (!laserIsOn && lifetime > 0)
+    {
+        float drainAmount = lifetime / 3f;
+        lifetime -= drainAmount;
+        if (lifetime < 0) lifetime = 0;
+
+        laserBeam.SetActive(true);
+        laserIsOn = true;
+    }
+    else if (laserIsOn)
+    {
+        laserBeam.SetActive(false);
+        laserIsOn = false;
+        StartCoroutine(LaserCooldown());
+    }
+}
+
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -85,4 +113,16 @@ public class FlashLightController : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         failSafe = false;
     }
+
+   IEnumerator LaserCooldown()
+{
+    laserOnCooldown = true;
+
+   
+    yield return new WaitForSeconds(5f);
+
+
+    laserOnCooldown = false;
+}
+
 }
