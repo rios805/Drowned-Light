@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb3088672ee9e8418ebdbc9abe5aaca, type: 3}
+  m_Name: SunMoonCoin
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4779530285364995945, guid: 2910308f71218fc499b3df3df22751f0, type: 3}
+  uIIcon: {fileID: 0}
+  itemName: Coin
+  sideA_ID: sun
+  sideB_ID: moon
+  sideA_Icon: {fileID: -1666972006, guid: 5e0fe930df57dc14ab36643b367d142b, type: 3}
+  sideB_Icon: {fileID: 847869725, guid: 5e0fe930df57dc14ab36643b367d142b, type: 3}

@@ -1,18 +1,19 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class FlashLightController : MonoBehaviour
 {
-
+    public EventHandler OnFlashlightBatteryPercentChanged;
+    public EventHandler OnFlashlightBatteryCountChanged;
+    
     public bool isOn = false;
     public GameObject lightSource;
     public AudioSource clickSound;
     public bool failSafe = false;
-
-    public TMP_Text text;
-    public TMP_Text batteryText;
 
 
     public float lifetime = 100;
@@ -23,11 +24,6 @@ public class FlashLightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        text.text = "BatteryLife: " + lifetime.ToString("0") + "%";
-        batteryText.text = "Batteries: " + batteries.ToString();
-
-
         if (isOn && lifetime > 0)
         {
             lifetime -= 1 * Time.deltaTime; 
@@ -40,7 +36,7 @@ public class FlashLightController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && lifetime > 0)
         {
             if(isOn == false && failSafe == false)
             {

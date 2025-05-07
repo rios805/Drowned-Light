@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - Battery
+  - Enemy
   - Pushable
   layers:
   - Default
@@ -17,8 +18,8 @@ TagManager:
   - Interact
   - Enemy
   - Player
-  - 
-  - 
+  - Post_Processing
+  - ItemDisplay
   - 
   - 
   - 
