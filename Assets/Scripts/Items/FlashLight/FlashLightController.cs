@@ -8,12 +8,12 @@ public class FlashLightController : MonoBehaviour
 
     public bool isOn = false;
     public GameObject lightSource;
-    public GameObject laserBeam;
+    // public GameObject laserBeam;
     public AudioSource clickSound;
-    public AudioSource laserSound;
+    // public AudioSource laserSound;
     public bool failSafe = false;
-    private bool laserOnCooldown = false;
-    private bool laserIsOn = false;
+    // private bool laserOnCooldown = false;
+    // private bool laserIsOn = false;
     
 
     public TMP_Text text;
@@ -75,34 +75,34 @@ public class FlashLightController : MonoBehaviour
             }
         }
 
-   if (Input.GetKeyDown(KeyCode.V))
-{
-    if (laserBeam == null || laserOnCooldown)
-        return;
+//    if (Input.GetKeyDown(KeyCode.V))
+// {
+//     if (laserBeam == null || laserOnCooldown)
+//         return;
 
-    if (!laserIsOn && lifetime > 0)
-    {
-        float drainAmount = lifetime / 3f;
-        lifetime -= drainAmount;
-        if (lifetime < 0) lifetime = 0;
+//     if (!laserIsOn && lifetime > 0)
+//     {
+//         float drainAmount = lifetime / 3f;
+//         lifetime -= drainAmount;
+//         if (lifetime < 0) lifetime = 0;
 
-        laserBeam.SetActive(true);
-        laserIsOn = true;
+//         laserBeam.SetActive(true);
+//         laserIsOn = true;
 
-        if (laserSound != null && !laserSound.isPlaying)
-            laserSound.Play();
-    }
-    else if (laserIsOn)
-    {
-        laserBeam.SetActive(false);
-        laserIsOn = false;
+//         if (laserSound != null && !laserSound.isPlaying)
+//             laserSound.Play();
+//     }
+//     else if (laserIsOn)
+//     {
+//         laserBeam.SetActive(false);
+//         laserIsOn = false;
 
-        if (laserSound != null && laserSound.isPlaying)
-            laserSound.Stop();
+//         if (laserSound != null && laserSound.isPlaying)
+//             laserSound.Stop();
 
-        StartCoroutine(LaserCooldown());
-    }
-}
+//         StartCoroutine(LaserCooldown());
+//     }
+// }
 
 
     }
@@ -122,15 +122,15 @@ public class FlashLightController : MonoBehaviour
         failSafe = false;
     }
 
-   IEnumerator LaserCooldown()
-{
-    laserOnCooldown = true;
+//    IEnumerator LaserCooldown()
+// {
+//     laserOnCooldown = true;
 
    
-    yield return new WaitForSeconds(5f);
+//     yield return new WaitForSeconds(5f);
 
 
-    laserOnCooldown = false;
-}
+//     laserOnCooldown = false;
+// }
 
 }
