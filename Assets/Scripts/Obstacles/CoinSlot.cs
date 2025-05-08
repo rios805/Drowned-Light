@@ -20,7 +20,7 @@ public class CoinSlot : MonoBehaviour, IInteractbleItem
                 if (item.IsCoin) 
                 {
                     placedCoin = item;
-                    inv.collectedItems.Remove(item);
+                    inv.RemoveItem(item);
                     isSideAUp = true;
 
                     UpdateVisual();
