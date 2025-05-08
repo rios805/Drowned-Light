@@ -8,7 +8,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryPanel;
     public RawImage itemDisplayImage;
     public TextMeshProUGUI itemNameText;
-
+    public TextMeshProUGUI itemDescriptionText;
+    public TextMeshProUGUI itemQuantityText;
     public Transform modelDisplaySpot;
     public RenderTexture renderTexture;
     public Camera itemDisplayCamera;
@@ -73,6 +74,12 @@ public class InventoryUI : MonoBehaviour
         SetLayerRecursively(currentModelInstance, LayerMask.NameToLayer("ItemDisplay"));
 
         Debug.Log("Spawned item prefab: " + item.itemName);
+
+        itemNameText.text = item.itemName;
+        itemDescriptionText.text = item.itemDescription;
+
+        int quantity = playerInventory.itemCounts.TryGetValue(item, out int count) ? count : 1;
+        itemQuantityText.text = $"x{quantity}";
     }
 
     void SetLayerRecursively(GameObject obj, int newLayer)

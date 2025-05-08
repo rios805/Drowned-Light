@@ -6,7 +6,8 @@ public class KeyItemSO : ScriptableObject
     public Transform prefab;
     public Sprite uIIcon;
     public string itemName;
-
+    [TextArea]
+    public string itemDescription;
     // For coin-based puzzles
     public string sideA_ID;
     public string sideB_ID;

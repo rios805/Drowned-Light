@@ -15,6 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 5923917143019019207, guid: 33ccedc1bc98ca647a382fa559994251, type: 3}
   uIIcon: {fileID: 0}
   itemName: Coin
+  itemDescription: Double sided coin of a serpent and flower
   sideA_ID: serpent
   sideB_ID: flower
   sideA_Icon: {fileID: 952184350, guid: 5e0fe930df57dc14ab36643b367d142b, type: 3}

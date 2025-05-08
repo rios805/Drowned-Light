@@ -35,7 +35,17 @@ public class DoorInteract : MonoBehaviour, IInteractbleItem
         if (inv != null && inv.HasItem(requiredKey))
         {
             Debug.Log("Correct key used. Door unlocked!");
-            door?.OpenDoor();
+            
+            inv.RemoveItem(requiredKey);
+
+            if (door != null)
+            {
+                door.OpenDoor();
+            }
+            else
+            {
+                Debug.LogWarning("DoorController not assigned");
+            }   
         }
         else
         {
