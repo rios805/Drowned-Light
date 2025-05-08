@@ -68,8 +68,8 @@ public class DisplaySettings : MonoBehaviour
         return 1;                            // Medium
     }
 
-    public void SetFullScreen(bool isFullScreen)
-    {
-        Screen.fullScreen = isFullScreen;
-    }
+    // public void SetFullScreen(bool isFullScreen)
+    // {
+    //     Screen.fullScreen = isFullScreen;
+    // }
 }
