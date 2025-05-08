@@ -16,6 +16,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private Slider flashlightSlider;
     [SerializeField] private TextMeshProUGUI flashlightBatteryText;
     [SerializeField] private CanvasGroup flashlightGroup;
+    public CanvasGroup damageFlash;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private Player player;
     [SerializeField] private FlashLightController flashLight;
@@ -30,6 +31,7 @@ public class PlayerHUD : MonoBehaviour
     private Coroutine staminaFade;
     private Coroutine sanityFade;
     private Coroutine flashlightFade;
+    private Coroutine damageFlashFade;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -46,6 +48,7 @@ public class PlayerHUD : MonoBehaviour
         sanityGroup.alpha = 0;
         staminaGroup.alpha = 0f;
         flashlightGroup.alpha = 0f;
+        damageFlash.alpha = 0f;
         flashlightBatteryText.text = "X" + flashLight.GetBatteryCount();
     }
 
@@ -80,13 +83,14 @@ public class PlayerHUD : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void showStats(CanvasGroup canvasGroup) {
+    public void showStats(CanvasGroup canvasGroup) {
         Coroutine fade = null;
         
         if (canvasGroup == healthGroup) fade = healthFade;
         else if (canvasGroup == staminaGroup) fade = staminaFade;
         else if (canvasGroup == sanityGroup) fade = sanityFade;
         else if (canvasGroup == flashlightGroup) fade = flashlightFade;
+        else if (canvasGroup == damageFlash) fade = damageFlashFade;
 
         if (fade != null) StopCoroutine(fade);
 
@@ -96,6 +100,7 @@ public class PlayerHUD : MonoBehaviour
         else if (canvasGroup == staminaGroup) staminaFade = newFade;
         else if (canvasGroup == sanityGroup) sanityFade = newFade;
         else if (canvasGroup == flashlightGroup) flashlightFade = newFade;
+        else if (canvasGroup == damageFlash) damageFlashFade = newFade;
     }
 
     private IEnumerator FadeSequence(CanvasGroup canvasGroup = null)

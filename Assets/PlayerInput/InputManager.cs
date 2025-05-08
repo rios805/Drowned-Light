@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
         Instance = this;
 
         playerInput.Player.Interact.performed += Interact_performed;
-        playerInput.Player.AlternateInteract.performed += InteractAlternate_performed;
+        //playerInput.Player.AlternateInteract.performed += InteractAlternate_performed;
         playerInput.Player.OpenMap.performed += OpenMap_performed;
     }
 

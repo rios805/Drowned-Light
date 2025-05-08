@@ -14,6 +14,10 @@ public class EnemyAI : MonoBehaviour, IEnemy
     [SerializeField] private List<AudioClip> footstepClips;
     [SerializeField] private AudioClip attackClip;
     [SerializeField] private AudioClip screamClip;
+    [SerializeField] private float footstepDistance = 1f;
+    [SerializeField] private float footstepTimer = 0f;
+    
+    private Vector3 lastPosition;
     
     public List<Transform> patrolPoints;
     public float walkSpeed;
@@ -25,6 +29,9 @@ public class EnemyAI : MonoBehaviour, IEnemy
     private int rand1;
     private int rand2;
     private Vector3 desiredPatrolPoint;
+
+    private bool hasPlayedAlertSound;
+    
     
     private float lastAttackTime = 0f;
     
@@ -39,8 +46,10 @@ public class EnemyAI : MonoBehaviour, IEnemy
     private EnemyState currentState;
 
     private void Awake() {
+        lastPosition = transform.position;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         
         currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
@@ -61,6 +70,20 @@ public class EnemyAI : MonoBehaviour, IEnemy
                 break;
         }
         CheckForPlayer();
+        if (agent.velocity.magnitude > 0.1f && agent.remainingDistance > agent.stoppingDistance)
+        {
+            footstepTimer += Vector3.Distance(transform.position, lastPosition);
+            
+            footstepDistance = (currentState == EnemyState.Chase) ? 2.6f : 1.6f;
+            
+            if (footstepTimer >= footstepDistance)
+            {
+                PlayFootstep();
+                footstepTimer = 0f;
+            }
+        }
+
+        lastPosition = transform.position;
     }
     
     private void CheckForPlayer()
@@ -70,6 +93,10 @@ public class EnemyAI : MonoBehaviour, IEnemy
         {
             if (hit.collider.CompareTag("Player") && !(currentState == EnemyState.Attack))
             {
+                if (!hasPlayedAlertSound) {
+                    audioSource.PlayOneShot(screamClip);
+                    hasPlayedAlertSound = true;
+                }
                 StopAllCoroutines();
                 currentState = EnemyState.Chase;
             }
@@ -78,13 +105,14 @@ public class EnemyAI : MonoBehaviour, IEnemy
 
     private void Patrol()
     {
+        hasPlayedAlertSound = false;
         SetAnimationState(running: false, attacking: false, idle: false);
         agent.speed = walkSpeed;
         agent.SetDestination(currentPatrolPoint.position);
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            int rand = Random.Range(0, 2);
+            int rand = Random.Range(0, 1);
 
             if (rand == 0)
             {
@@ -123,41 +151,41 @@ public class EnemyAI : MonoBehaviour, IEnemy
 
     private void Attack()
     {
-        SetAnimationState(running: false, attacking: true, idle: false);
+        SetAnimationState(running: false, attacking: false,idle: true);
         agent.isStopped = true;
         agent.velocity = Vector3.zero; 
         agent.ResetPath();
         
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer > attackRange)
-        {
-            SetAnimationState(running: false, attacking: false, idle: false);
-            agent.isStopped = false;
-            currentState = EnemyState.Chase;
-            return;
-        }
-
         if (Time.time >= lastAttackTime + attackCooldown)
         {
             //PlaySound(attackClip);
             player.TakeDamage(damageAmount);
             lastAttackTime = Time.time;
-            SetAnimationState(running: false, attacking: false, idle: false);
+            SetAnimationState(running: false, attacking: true, idle: false);
+            return;
         }
+        if (distanceToPlayer > attackRange)
+        {
+            SetAnimationState(running: false, attacking: false, idle: false);
+            currentState = EnemyState.Chase;
+            return;
+        }
+        
     }
     
     IEnumerator Idle() {
         SetAnimationState(running: false, attacking: false, idle: true);
         yield return new WaitForSeconds(Random.Range(minIdle, maxIdle));
         agent.isStopped = false;
-        currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
+        //currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
     }
 
     IEnumerator ResumePatrol()
     {
         yield return new WaitForSeconds(Random.Range(runMin, runMax));
-        currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
+        //currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
         
     }
@@ -186,10 +214,11 @@ public class EnemyAI : MonoBehaviour, IEnemy
     
     private void PlayFootstep()
     {
-        if (footstepClips.Count > 0)
+        if (footstepClips.Count > 0 && audioSource != null)
         {
             int index = Random.Range(0, footstepClips.Count);
-            PlaySound(footstepClips[index]);
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(footstepClips[index]);
         }
     }
 }

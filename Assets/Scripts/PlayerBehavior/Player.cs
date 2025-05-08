@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tooltipText;
     [SerializeField] private NoteUI noteUI;
     [SerializeField] private GameOverUI gameOverUI;
+    [SerializeField] private PlayerHUD playerHUD;
     
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour
         staminaCoolDown -= Time.deltaTime;
         if (inputManager.PlayerInput_Sprint() && stamina > 0f && !isCrouched && staminaCoolDown < 0f) {
             isSprinting = true;
-            stamina -= Time.deltaTime * 20f;
+            stamina -= Time.deltaTime * 15f;
             
             if (stamina < 0.1f) {
                 stamina = Mathf.Clamp(stamina, 0f, maxStamina);
@@ -116,7 +117,7 @@ public class Player : MonoBehaviour
         } else {
             isSprinting = false;
             if (stamina < maxStamina) {
-                stamina += Time.deltaTime * 6f;
+                stamina += Time.deltaTime * 8f;
                 stamina = Mathf.Clamp(stamina, 0f, maxStamina);
                 OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -241,6 +242,7 @@ public class Player : MonoBehaviour
             audioSource.PlayOneShot(damageClips[index]);
         }      
         health -= damage;
+        playerHUD.showStats(playerHUD.damageFlash);
         
         if (health <= 0f) {
             OnPlayerKilled?.Invoke(this, EventArgs.Empty);

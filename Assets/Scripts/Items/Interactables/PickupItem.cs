@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickupItem : MonoBehaviour, IInteractbleItem
+public class PickupItem : MonoBehaviour, IInteractbleItem, IToolTip
 {
     [SerializeField] public KeyItemSO itemData;
 
@@ -24,6 +24,10 @@ public class PickupItem : MonoBehaviour, IInteractbleItem
 
     public void HasOwner()
     {
+    }
+
+    public string ShowToolTip() {
+        return "PRESS E TO PICK UP";
     }
 }
 
