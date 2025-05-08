@@ -2,33 +2,37 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] private float slideDistance = 3f;
-    [SerializeField] private float slideSpeed = 1f;
+    [SerializeField] private float swingAngle = 90f;         // Degrees to swing open
+    [SerializeField] private float swingSpeed = 90f;         // Degrees per second
+    [SerializeField] private bool swingClockwise = true;     // Direction of swing
 
     private bool isOpen = false;
-    private Vector3 targetPosition;
-    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private Quaternion targetRotation;
 
     private void Start()
     {
-        initialPosition = transform.position;
-        targetPosition = initialPosition + transform.right * -slideDistance; // slide left
+        initialRotation = transform.rotation;
+
+        float angle = swingClockwise ? -swingAngle : swingAngle;
+        targetRotation = Quaternion.Euler(0f, angle, 0f) * initialRotation;
     }
 
     public void OpenDoor()
     {
         if (isOpen) return;
         isOpen = true;
-        StartCoroutine(SlideOpen());
+        StartCoroutine(SwingOpen());
     }
 
-    private System.Collections.IEnumerator SlideOpen()
+    private System.Collections.IEnumerator SwingOpen()
     {
-        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+        while (Quaternion.Angle(transform.rotation, targetRotation) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, slideSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, swingSpeed * Time.deltaTime);
             yield return null;
         }
     }
 }
+
 

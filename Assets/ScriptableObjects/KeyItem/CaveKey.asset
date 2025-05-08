@@ -15,6 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 7028443177940321407, guid: b6921bf9bd181284eb92306e718bd3f9, type: 3}
   uIIcon: {fileID: 0}
   itemName: Cave Key
+  itemDescription: Rusty cave key. Might open a door somewhere...
   sideA_ID: 
   sideB_ID: 
   sideA_Icon: {fileID: 0}
