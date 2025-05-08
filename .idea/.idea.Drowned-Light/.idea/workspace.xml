@@ -4,7 +4,250 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3f9796-946b-40af-a03d-cb3c9f743684" name="Changes" comment="" />
+    <list default="true" id="4d3f9796-946b-40af-a03d-cb3c9f743684" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/StatueSpawns.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Closed.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Closed.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/FenceOpenDown.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/FenceOpenDown.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fence_04.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Fence_04.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Floor2_MazeDoor.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Floor2_MazeDoor.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueFourGem.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueFourGem.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueOneGem.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueOneGem.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueThreeGem.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueThreeGem.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueTwoGem.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/Differentiating Materials/StatueTwoGem.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/PressureObjects.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/PressureObjects.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue1.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue2.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue2.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue3.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue3.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue4.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Statue4.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/JacksonScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/JacksonScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainGameScenes/MainGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainGameScenes/MainGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/KeyPickup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/KeyPickup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/RandomSpawns.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/RandomSpawns.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/StatueSpawns.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Obstacles/DoorInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Obstacles/DoorInteract.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/DoorAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/DoorAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 1.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 1.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 2.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 2.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 3.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 3.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 4.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/Owl Statue 4.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/White.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Materials/White.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Models.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Models/Owl Statue.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Models/Owl Statue.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 1.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 2.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 2.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 3.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 3.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 4.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Prefabs/Owl Statue 4.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/Built-in.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/Built-in/Post Processing Profile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/Built-in/Post Processing Profile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/DefaultLookDevProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/DefaultLookDevProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/DefaultSettingsVolumeProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/DefaultSettingsVolumeProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/FoliageDiffusionProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/FoliageDiffusionProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/Global Volume Profile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/Global Volume Profile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/HDRenderPipelineAsset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/HDRenderPipelineAsset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/HDRenderPipelineGlobalSettings.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/HDRenderPipelineGlobalSettings.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/SkinDiffusionProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/HDRP/SkinDiffusionProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/URP.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/URP/Global Volume Profile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/URP/Global Volume Profile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/URP/Universal Render Pipeline Asset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/URP/Universal Render Pipeline Asset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/URP/Universal Render Pipeline Asset_Renderer.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Settings/URP/Universal Render Pipeline Asset_Renderer.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 1 BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 1 BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 1 MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 1 MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 1 Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 1 Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 2 BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 2 BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 2 MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 2 MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 2 Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 2 Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 3 BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 3 BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 3 MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 3 MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 3 Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 3 Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 4 BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 4 BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 4 MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 4 MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 4 Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Owl Statue/Textures/Owl Statue 4 Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Copper.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Copper.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Marble.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Marble.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Metal.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Metal.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Oxidized Copper.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Oxidized Copper.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Stone.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Materials/Seated Lion Stone.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Models.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Models/Seated Lion.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Models/Seated Lion.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Copper.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Copper.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Marble.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Marble.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Metal.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Metal.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Oxidized Copper.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Oxidized Copper.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Stone.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Prefabs/Seated Lion Stone.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/DefaultLookDevProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/DefaultLookDevProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/DefaultSettingsVolumeProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/DefaultSettingsVolumeProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/FoliageDiffusionProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/FoliageDiffusionProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/Global Volume Profile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/Global Volume Profile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/HDRenderPipelineAsset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/HDRenderPipelineAsset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/HDRenderPipelineGlobalSettings.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/HDRenderPipelineGlobalSettings.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/SkinDiffusionProfile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/HDRP/SkinDiffusionProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/URP.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/URP/Universal Render Pipeline Asset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/URP/Universal Render Pipeline Asset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/URP/Universal Render Pipeline Asset_Renderer.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/URP/Universal Render Pipeline Asset_Renderer.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/URP/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Settings/URP/UniversalRenderPipelineGlobalSettings.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Copper.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Copper/Seated Lion Copper BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Copper/Seated Lion Copper BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Copper/Seated Lion Copper MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Copper/Seated Lion Copper MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Copper/Seated Lion Copper Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Copper/Seated Lion Copper Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Marble.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Marble/Seated Lion Marble BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Marble/Seated Lion Marble BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Marble/Seated Lion Marble MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Marble/Seated Lion Marble MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Marble/Seated Lion Marble Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Marble/Seated Lion Marble Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Metal.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Metal/Seated Lion Metal BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Metal/Seated Lion Metal BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Metal/Seated Lion Metal MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Metal/Seated Lion Metal MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Metal/Seated Lion Metal Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Metal/Seated Lion Metal Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Oxidized Copper.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Oxidized Copper/Seated Lion Oxidized Copper BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Oxidized Copper/Seated Lion Oxidized Copper BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Oxidized Copper/Seated Lion Oxidized Copper MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Oxidized Copper/Seated Lion Oxidized Copper MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Oxidized Copper/Seated Lion Oxidized Copper Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Oxidized Copper/Seated Lion Oxidized Copper Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Stone.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone BaseMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone BaseMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone MaskMap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone MaskMap.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Sky HDRI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Sky HDRI/Sky HDRI.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/Statues/Sitting Lion Statue/Textures/Sky HDRI/Sky HDRI.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/source.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/source/BodyLow.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/source/BodyLow.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Base_Color.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Base_Color.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Metallic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Metallic.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Mixed_AO.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Mixed_AO.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Normal_DirectX.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Normal_DirectX.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Roughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/bodyModel/textures/Material__57_Roughness.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.blend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.blend.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.dae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.dae.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.mtl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.obj.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalModels/model/pedestal.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/BaseColor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/BaseColor.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Height.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Height.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Metallic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Metallic.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Roughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/Roughness.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/greek padestal.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visuals/pedestalTextures/textures/greek padestal.json.meta" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,19 +291,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;rudy-dev&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Reverting in rudy-dev",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/TestBuild\Drowned Light.exe" />
