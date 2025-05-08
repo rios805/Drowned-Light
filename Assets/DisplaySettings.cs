@@ -1,36 +1,58 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DisplaySettings : MonoBehaviour
 {
     public TMP_Dropdown qualityDropdown;
+    public TMP_Dropdown resolutionDropdown;
+    public Toggle fullscreenToggle; 
+
+    private Resolution[] resolutions;
 
     void Start()
     {
-        // Load saved quality level or use the current
+        // Setup quality
         int savedQualityLevel = PlayerPrefs.GetInt("qualityLevel", QualitySettings.GetQualityLevel());
         QualitySettings.SetQualityLevel(savedQualityLevel);
 
-        // Set up dropdown options
         qualityDropdown.ClearOptions();
         qualityDropdown.AddOptions(new System.Collections.Generic.List<string> { "High", "Medium", "Low" });
 
-        // Match dropdown value to current quality
-        int dropdownIndex = QualityLevelToDropdownIndex(savedQualityLevel);
-        qualityDropdown.value = dropdownIndex;
+        int qualityIndex = QualityLevelToDropdownIndex(savedQualityLevel);
+        qualityDropdown.value = qualityIndex;
         qualityDropdown.RefreshShownValue();
+        qualityDropdown.onValueChanged.AddListener((index) => SetQuality(index));
 
-        // Add listener for changes
-        qualityDropdown.onValueChanged.AddListener((index) => {
-            SetQuality(index);
-        });
+        // Setup resolutions
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
 
-        // Debug quality levels
-        Debug.Log("Unity Quality Levels:");
-        for (int i = 0; i < QualitySettings.names.Length; i++)
+        System.Collections.Generic.List<string> options = new System.Collections.Generic.List<string>();
+        int currentResolutionIndex = 0;
+
+        for (int i = 0; i < resolutions.Length; i++)
         {
-            Debug.Log($"{i}: {QualitySettings.names[i]}");
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            if (!options.Contains(option)) // Avoid duplicates
+                options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
         }
+
+        resolutionDropdown.AddOptions(options);
+        int savedResolutionIndex = PlayerPrefs.GetInt("resolutionIndex", currentResolutionIndex);
+        resolutionDropdown.value = Mathf.Clamp(savedResolutionIndex, 0, options.Count - 1);
+        resolutionDropdown.RefreshShownValue();
+
+        resolutionDropdown.onValueChanged.AddListener(SetResolution);
+
+        if (fullscreenToggle != null)
+            fullscreenToggle.isOn = Screen.fullScreen;
     }
 
     void SetQuality(int dropdownIndex)
@@ -41,20 +63,25 @@ public class DisplaySettings : MonoBehaviour
 
         PlayerPrefs.SetInt("qualityLevel", unityIndex);
         PlayerPrefs.Save();
+    }
 
-        Debug.Log("Quality set to: " + QualitySettings.names[unityIndex]);
+    void SetResolution(int index)
+    {
+        Resolution res = resolutions[index];
+        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+
+        PlayerPrefs.SetInt("resolutionIndex", index);
+        PlayerPrefs.Save();
     }
 
     int DropdownIndexToQualityLevel(int index)
     {
-      
         int max = QualitySettings.names.Length - 1;
-
         switch (index)
         {
-            case 0: return max;               // High = highest quality index
-            case 1: return max / 2;           // Medium = middle quality index
-            case 2: return 0;                 // Low = lowest quality index
+            case 0: return max;        // High
+            case 1: return max / 2;    // Medium
+            case 2: return 0;          // Low
             default: return max / 2;
         }
     }
@@ -62,14 +89,15 @@ public class DisplaySettings : MonoBehaviour
     int QualityLevelToDropdownIndex(int qualityLevel)
     {
         int max = QualitySettings.names.Length - 1;
-
-        if (qualityLevel >= max) return 0;   // High
-        if (qualityLevel <= 0) return 2;     // Low
-        return 1;                            // Medium
+        if (qualityLevel >= max) return 0;  // High
+        if (qualityLevel <= 0) return 2;    // Low
+        return 1;                           // Medium
     }
 
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+        PlayerPrefs.SetInt("fullscreen", isFullScreen ? 1 : 0);
+        PlayerPrefs.Save();
     }
 }
