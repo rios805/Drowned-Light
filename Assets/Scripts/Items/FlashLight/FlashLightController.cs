@@ -10,6 +10,7 @@ public class FlashLightController : MonoBehaviour
     public GameObject lightSource;
     public GameObject laserBeam;
     public AudioSource clickSound;
+    public AudioSource laserSound;
     public bool failSafe = false;
     private bool laserOnCooldown = false;
     private bool laserIsOn = false;
@@ -74,7 +75,7 @@ public class FlashLightController : MonoBehaviour
             }
         }
 
-    if (Input.GetKeyDown(KeyCode.V))
+   if (Input.GetKeyDown(KeyCode.V))
 {
     if (laserBeam == null || laserOnCooldown)
         return;
@@ -87,11 +88,18 @@ public class FlashLightController : MonoBehaviour
 
         laserBeam.SetActive(true);
         laserIsOn = true;
+
+        if (laserSound != null && !laserSound.isPlaying)
+            laserSound.Play();
     }
     else if (laserIsOn)
     {
         laserBeam.SetActive(false);
         laserIsOn = false;
+
+        if (laserSound != null && laserSound.isPlaying)
+            laserSound.Stop();
+
         StartCoroutine(LaserCooldown());
     }
 }
