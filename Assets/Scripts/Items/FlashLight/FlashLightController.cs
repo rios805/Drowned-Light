@@ -14,20 +14,16 @@ public class FlashLightController : MonoBehaviour
     public GameObject lightSource;
     public AudioSource clickSound;
     public bool failSafe = false;
-
-
     public float lifetime = 100;
-    public float batteries = 0;
-
-
-
+    public int batteries = 0;
+    
     // Update is called once per frame
     void Update()
     {
         if (isOn && lifetime > 0)
         {
+            OnFlashlightBatteryPercentChanged?.Invoke(this, EventArgs.Empty);
             lifetime -= 1 * Time.deltaTime; 
-
             if (lifetime <= 0)
             {
                 lifetime = 0;
@@ -63,6 +59,7 @@ public class FlashLightController : MonoBehaviour
                 batteries -= 1;
                 lifetime += 50;
                 if (lifetime > 100f) lifetime = 100f;
+                OnFlashlightBatteryCountChanged?.Invoke(this, EventArgs.Empty);
             }
         }
     }
@@ -71,6 +68,7 @@ public class FlashLightController : MonoBehaviour
     {
         if (other.CompareTag("Battery"))
         {
+            OnFlashlightBatteryCountChanged?.Invoke(this, EventArgs.Empty);
             batteries += 1;
             Destroy(other.gameObject);
         }
@@ -80,5 +78,13 @@ public class FlashLightController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         failSafe = false;
+    }
+
+    public float GetPercentage() {
+        return lifetime;
+    }
+
+    public int GetBatteryCount() {
+        return batteries;
     }
 }

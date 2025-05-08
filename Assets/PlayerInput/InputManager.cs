@@ -55,7 +55,10 @@ public class InputManager : MonoBehaviour
     public bool PlayerInput_Pause() {
         return playerInput.Player.Pause.triggered;
     }
-
+    public bool PlayerInput_Interact() {
+        return playerInput.Player.Interact.triggered;
+    }
+    
     public bool PlayerInput_AlternateInteract() {
         return playerInput.Player.AlternateInteract.triggered;
     }

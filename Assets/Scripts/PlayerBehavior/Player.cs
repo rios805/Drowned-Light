@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,6 +29,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform playerTopPoint;
     
     [Header("Player Settings")]
+    [SerializeField] private float maxStamina;
+    [SerializeField] private float maxSanity;
+    [SerializeField] private int maxHealth;
+    
     [SerializeField] private float stamina;
     [SerializeField] private float sanity;
     [SerializeField] private int health;
@@ -38,7 +43,11 @@ public class Player : MonoBehaviour
     [SerializeField]private Transform cameraFollowTransform;
     [SerializeField]private InputManager inputManager;
     [SerializeField]private float mainFOV = 60f;
-    [SerializeField] private LayerMask enemyLayerMask;
+    [SerializeField] private LayerMask interactLayerMask;
+    
+    [Header("UI Stuff")]
+    [SerializeField] private TextMeshProUGUI tooltipText;
+    [SerializeField] private NoteUI noteUI;
     
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -56,7 +65,7 @@ public class Player : MonoBehaviour
     
     // Needed variables
     private bool groundedPlayer, isCrouched, isSprinting;
-    private float playerSpeed,playerTargetHeight, targetFOV, staminaCoolDown, enemyCheckTimer;
+    private float playerSpeed,playerTargetHeight, targetFOV, staminaCoolDown, enemyCheckTimer, tooltipCheckTimers;
     private CharacterController controller;
     private Vector3 playerTargetCenter, lastPosition, currentVelocity;
     private Transform cameraTransform;
@@ -98,16 +107,16 @@ public class Player : MonoBehaviour
             stamina -= Time.deltaTime * 20f;
             
             if (stamina < 0.1f) {
-                stamina = Mathf.Clamp(stamina, 0f, 100f);
+                stamina = Mathf.Clamp(stamina, 0f, maxStamina);
                 isSprinting = false;
                 staminaCoolDown = 4f;
             }
             OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
         } else {
             isSprinting = false;
-            if (stamina < 100f) {
+            if (stamina < maxStamina) {
                 stamina += Time.deltaTime * 6f;
-                stamina = Mathf.Clamp(stamina, 0f, 100f);
+                stamina = Mathf.Clamp(stamina, 0f, maxStamina);
                 OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -196,6 +205,33 @@ public class Player : MonoBehaviour
             }
             enemyCheckTimer = .1f;
         }
+
+        if (tooltipCheckTimers <= 0f) {
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, 2f)) {
+                if (hit.collider != null)
+                {
+                    tooltipText.text = ChangeTooltip(hit.collider);
+                }else
+                {
+                    tooltipText.text = "";
+                }
+            }else
+            {
+                tooltipText.text = "";
+            }
+        }
+
+        if (inputManager.PlayerInput_Interact() && !noteUI.IsShowing()) {
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, 2f, interactLayerMask))
+            {
+                IInteractbleItem interactable = hit.collider.GetComponent<IInteractbleItem>();
+                if (interactable != null)
+                {
+                    interactable.OnPlayerInteract();
+                }
+            }
+        }
+        
     }
 
     public void TakeDamage(int damage) {
@@ -274,5 +310,16 @@ public class Player : MonoBehaviour
         Vector3 pushDir = new Vector3(hit.moveDirection.x, 0f, hit.moveDirection.z);
 
         rb.linearVelocity = pushDir * pushStrength;
+    }
+
+    private String ChangeTooltip(Collider collider) {
+        var tempMonoArray  = collider.gameObject.GetComponents<MonoBehaviour>();
+        foreach (var mono in tempMonoArray) {
+            if (mono is IToolTip toolTip) {
+                return toolTip.ShowToolTip();
+            }
+        }
+        
+        return "";
     }
 }

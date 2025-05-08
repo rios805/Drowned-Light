@@ -13,8 +13,12 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private CanvasGroup staminaGroup;
     [SerializeField] private Slider sanitySlider;
     [SerializeField] private CanvasGroup sanityGroup;
+    [SerializeField] private Slider flashlightSlider;
+    [SerializeField] private TextMeshProUGUI flashlightBatteryText;
+    [SerializeField] private CanvasGroup flashlightGroup;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private Player player;
+    [SerializeField] private FlashLightController flashLight;
     
     
     [Header("Bar Fade Settings")]
@@ -22,6 +26,10 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private float visibleTime = 2f;
     
     private Coroutine _fadeCoroutine;
+    private Coroutine healthFade;
+    private Coroutine staminaFade;
+    private Coroutine sanityFade;
+    private Coroutine flashlightFade;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -30,10 +38,24 @@ public class PlayerHUD : MonoBehaviour
         player.OnPlayerStaminaChanged += Player_OnPlayerStaminaChanged;
         player.OnPlayerKilled += Player_OnPlayerKilled;
         
+        flashLight.OnFlashlightBatteryPercentChanged += Flashlight_OnFlashlightBatteryPercentChanged;
+        flashLight.OnFlashlightBatteryCountChanged += Flashlight_OnFlashlightBatteryCountChanged;
+        
         
         healthGroup.alpha = 0;
         sanityGroup.alpha = 0;
         staminaGroup.alpha = 0f;
+        flashlightGroup.alpha = 0f;
+        flashlightBatteryText.text = "X" + flashLight.GetBatteryCount();
+    }
+
+    private void Flashlight_OnFlashlightBatteryPercentChanged(object sender, System.EventArgs e) {
+        flashlightSlider.value = flashLight.GetPercentage();
+        showStats(flashlightGroup);
+    }
+    private void Flashlight_OnFlashlightBatteryCountChanged(object sender, System.EventArgs e) {
+        flashlightBatteryText.text = "X" + flashLight.GetBatteryCount();
+        showStats(flashlightGroup);
     }
 
     private void Player_OnPlayerHealthChanged(object sender, System.EventArgs e ) {
@@ -43,7 +65,9 @@ public class PlayerHUD : MonoBehaviour
 
     private void Player_OnPlayerSanityChanged(object sender, System.EventArgs e) {
         sanitySlider.value = player.GetSanity();
-        showStats(sanityGroup);
+        if (player.GetSanity() <= 99f) {
+            showStats(sanityGroup);
+        }
     }
 
     private void Player_OnPlayerStaminaChanged(object sender, System.EventArgs e) {
@@ -56,14 +80,22 @@ public class PlayerHUD : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void showStats(CanvasGroup canvasGroup)
-    {
-        //Stops any current fade routine and then restarts it
-        if(_fadeCoroutine != null)
-        {
-            StopCoroutine(_fadeCoroutine);
-        }
-        _fadeCoroutine = StartCoroutine(FadeSequence(canvasGroup));
+    private void showStats(CanvasGroup canvasGroup) {
+        Coroutine fade = null;
+        
+        if (canvasGroup == healthGroup) fade = healthFade;
+        else if (canvasGroup == staminaGroup) fade = staminaFade;
+        else if (canvasGroup == sanityGroup) fade = sanityFade;
+        else if (canvasGroup == flashlightGroup) fade = flashlightFade;
+
+        if (fade != null) StopCoroutine(fade);
+
+        Coroutine newFade = StartCoroutine(FadeSequence(canvasGroup));
+
+        if (canvasGroup == healthGroup) healthFade = newFade;
+        else if (canvasGroup == staminaGroup) staminaFade = newFade;
+        else if (canvasGroup == sanityGroup) sanityFade = newFade;
+        else if (canvasGroup == flashlightGroup) flashlightFade = newFade;
     }
 
     private IEnumerator FadeSequence(CanvasGroup canvasGroup = null)
