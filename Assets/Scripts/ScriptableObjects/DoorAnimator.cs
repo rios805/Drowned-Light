@@ -7,18 +7,18 @@ public class DoorAnimator : MonoBehaviour
 
     public OpenDirection direction = OpenDirection.Down; 
 
-    public enum CloseDirection {Down, Side}
+    // public enum CloseDirection {Down, Side}
 
-    public CloseDirection closing = CloseDirection.Down; 
+    // public CloseDirection closing = CloseDirection.Down; 
     
     public Animator animator;
 
     // caching the hash for efficiency
     private static readonly int OpenDownHash = Animator.StringToHash("OpenDown");
     private static readonly int OpenUpHash = Animator.StringToHash("OpenUp");
-    private static readonly int OpenSideHash = Animator.StringToHash("OpenSide");
+    // private static readonly int OpenSideHash = Animator.StringToHash("OpenSide");
     private static readonly int CloseDownHash = Animator.StringToHash("CloseDown");
-    private static readonly int CloseSideHash = Animator.StringToHash("CloseSide");
+    // private static readonly int CloseSideHash = Animator.StringToHash("CloseSide");
 
 
     void Awake()
@@ -45,23 +45,24 @@ public class DoorAnimator : MonoBehaviour
             case OpenDirection.Up:
                 animator.SetTrigger(OpenUpHash);
                 break; 
-            case OpenDirection.Side:
-                animator.SetTrigger(OpenSideHash);
-                break;
+            // case OpenDirection.Side:
+            //     animator.SetTrigger(OpenSideHash);
+            //     break;
         }
     }
 
     public void CloseDoor()
     {
-        switch(closing)
-        {
-            case CloseDirection.Down:
-                animator.SetTrigger(CloseDownHash);
-                break;
+        animator.SetTrigger(CloseDownHash);
+        // switch(closing)
+        // {
+        //     case CloseDirection.Down:
+        //         animator.SetTrigger(CloseDownHash);
+        //         break;
             
-            case CloseDirection.Side:
-                animator.SetTrigger(CloseSideHash);
-                break;
-        }
+        //     case CloseDirection.Side:
+        //         animator.SetTrigger(CloseSideHash);
+        //         break;
+        // }
     }
 }
