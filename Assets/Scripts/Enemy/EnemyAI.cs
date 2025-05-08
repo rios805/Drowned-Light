@@ -10,7 +10,10 @@ public class EnemyAI : MonoBehaviour, IEnemy
     [SerializeField] private Animator animator;
     [SerializeField] private int minIdle, maxIdle, damageAmount;
     [SerializeField] private float sightRange, attackRange, runSeconds, runMin, runMax, attackCooldown;
-    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> footstepClips;
+    [SerializeField] private AudioClip attackClip;
+    [SerializeField] private AudioClip screamClip;
     
     public List<Transform> patrolPoints;
     public float walkSpeed;
@@ -75,7 +78,7 @@ public class EnemyAI : MonoBehaviour, IEnemy
 
     private void Patrol()
     {
-        //eanimator.Play("Walk");
+        SetAnimationState(running: false, attacking: false, idle: false);
         agent.speed = walkSpeed;
         agent.SetDestination(currentPatrolPoint.position);
 
@@ -85,10 +88,12 @@ public class EnemyAI : MonoBehaviour, IEnemy
 
             if (rand == 0)
             {
+                SetAnimationState(running: false, attacking: false, idle: false);
                 currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
             }
             else
             {
+                SetAnimationState(running: false, attacking: false, idle: true);
                 agent.isStopped = true;
                 currentState = EnemyState.Idle;
                 StartCoroutine(Idle());
@@ -98,11 +103,12 @@ public class EnemyAI : MonoBehaviour, IEnemy
     
     private void Chase()
     {
+        SetAnimationState(running: true, attacking: false, idle: false);
         agent.isStopped = false;
         agent.speed = runSpeed;
         agent.SetDestination(player.transform.position);
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        //animator.Play("Chase");
+        
         if (distance <= attackRange)
         {
             currentState = EnemyState.Attack;
@@ -117,7 +123,7 @@ public class EnemyAI : MonoBehaviour, IEnemy
 
     private void Attack()
     {
-        //animator.Play("Attack");
+        SetAnimationState(running: false, attacking: true, idle: false);
         agent.isStopped = true;
         agent.velocity = Vector3.zero; 
         agent.ResetPath();
@@ -125,6 +131,7 @@ public class EnemyAI : MonoBehaviour, IEnemy
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer > attackRange)
         {
+            SetAnimationState(running: false, attacking: false, idle: false);
             agent.isStopped = false;
             currentState = EnemyState.Chase;
             return;
@@ -132,18 +139,19 @@ public class EnemyAI : MonoBehaviour, IEnemy
 
         if (Time.time >= lastAttackTime + attackCooldown)
         {
+            //PlaySound(attackClip);
             player.TakeDamage(damageAmount);
             lastAttackTime = Time.time;
+            SetAnimationState(running: false, attacking: false, idle: false);
         }
     }
     
     IEnumerator Idle() {
+        SetAnimationState(running: false, attacking: false, idle: true);
         yield return new WaitForSeconds(Random.Range(minIdle, maxIdle));
         agent.isStopped = false;
         currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
-        
-        //animator.Play("Idle");
     }
 
     IEnumerator ResumePatrol()
@@ -151,7 +159,7 @@ public class EnemyAI : MonoBehaviour, IEnemy
         yield return new WaitForSeconds(Random.Range(runMin, runMax));
         currentPatrolPoint = patrolPoints[Random.Range(0, patrolPoints.Count)];
         currentState = EnemyState.Patrol;
-        //animator.Play("Walk");
+        
     }
 
     public string GetEnemyType() {
@@ -159,5 +167,29 @@ public class EnemyAI : MonoBehaviour, IEnemy
     }
 
     public void SeenByPlayer(bool isSeen) {
+    }
+
+    private void SetAnimationState(bool running, bool attacking, bool idle) {
+        animator.SetBool("isRunning", running);
+        animator.SetBool("isAttacking", attacking);
+        animator.SetBool("isIdle", idle);
+    }
+    
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f); // Slight variation
+            audioSource.PlayOneShot(clip);
+        }
+    }
+    
+    private void PlayFootstep()
+    {
+        if (footstepClips.Count > 0)
+        {
+            int index = Random.Range(0, footstepClips.Count);
+            PlaySound(footstepClips[index]);
+        }
     }
 }

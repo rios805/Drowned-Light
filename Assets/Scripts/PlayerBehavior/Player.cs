@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float stamina;
     [SerializeField] private float sanity;
     [SerializeField] private int health;
+    [SerializeField] private FlashLightController flashLight;
     
     [Header("Camera Settings + Input")]
     [SerializeField]private CinemachineCamera virtualCamera;
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
         playerSpeed = defaultPlayerSpeed;
         playerTargetHeight = controller.height;
         playerTargetCenter = controller.center;
@@ -104,7 +106,7 @@ public class Player : MonoBehaviour
         } else {
             isSprinting = false;
             if (stamina < 100f) {
-                stamina += Time.deltaTime * 3f;
+                stamina += Time.deltaTime * 6f;
                 stamina = Mathf.Clamp(stamina, 0f, 100f);
                 OnPlayerStaminaChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -182,17 +184,18 @@ public class Player : MonoBehaviour
                 
                 if (IsEnemyVisible(enemy)) {
                     //Debug.Log("Enemy is on screen and in FOV: " + enemy.name);
-                    LoseSanity(0.5f);
+                    LoseSanity(0.25f);
                     ienemy.SeenByPlayer(isVisible);
                 }
                 else {
                     ienemy.SeenByPlayer(isVisible);
+                    if (flashLight.isOn) {
+                        GainSanity(0.05f);
+                    }
                 }
             }
-            enemyCheckTimer = .5f;
+            enemyCheckTimer = .1f;
         }
-        
-
     }
 
     public void TakeDamage(int damage) {
@@ -211,6 +214,13 @@ public class Player : MonoBehaviour
 
     public void LoseSanity(float lostSanity) {
         sanity -= lostSanity;
+        sanity = Mathf.Clamp(sanity,0f, 100f);
+        OnPlayerSanityChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void GainSanity(float gainedSanity) {
+        sanity += gainedSanity;
+        sanity = Mathf.Clamp(sanity,0f, 100f);
         OnPlayerSanityChanged?.Invoke(this, EventArgs.Empty);
     }
     
@@ -253,13 +263,9 @@ public class Player : MonoBehaviour
                 return hit.collider.gameObject == enemy;
             }
         }
-        
-        
-
         return false;
-
-        
     }
+    
     private void OnControllerColliderHit(ControllerColliderHit hit) {
 
         var rb = hit.collider.attachedRigidbody;
