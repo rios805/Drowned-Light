@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     [Header("UI Stuff")]
     [SerializeField] private TextMeshProUGUI tooltipText;
     [SerializeField] private NoteUI noteUI;
+    [SerializeField] private GameOverUI gameOverUI;
     
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -243,7 +244,7 @@ public class Player : MonoBehaviour
         
         if (health <= 0f) {
             OnPlayerKilled?.Invoke(this, EventArgs.Empty);
-            Time.timeScale = 0f;
+            gameOverUI.OnDeath();
         }
         OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
     }

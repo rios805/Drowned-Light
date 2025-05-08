@@ -46,9 +46,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
     
-    
-    
-
     private void OnPause() {
         if (tapeSound != null && tapeAudioSource != null)
         {
